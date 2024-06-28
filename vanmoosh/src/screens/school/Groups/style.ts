@@ -1,12 +1,14 @@
-import { StyleSheet } from "react-native";
+import styled from "styled-components/native";
 
-const groupsStyles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    });
+export const Container = styled.SafeAreaView`
+    flex: 1;
+    background-color: #fff;
+    align-items: center;
+    justify-content: center;
 
-    export default groupsStyles;
+`;
+
+export const Title = styled.Text`
+    color: #000;
+    font-size: 32;
+`;
