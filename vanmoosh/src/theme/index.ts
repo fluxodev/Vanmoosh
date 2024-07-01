@@ -4,6 +4,7 @@ export default {
 
     BRAND_LIGHT: '#003E9A', // Azul principal
     BRAND_MID: '#00338D', // Azul mais escuro
+    BRAND_DARK: '#8B0000', // Vermelho mais escuro
 
     GRAY_100: '#E1E1E6',
     GRAY_200: '#C4C4CC',

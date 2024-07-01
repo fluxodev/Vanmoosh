@@ -2,7 +2,9 @@ import Groups from '@screens/school/Groups';
 import { ThemeProvider } from 'styled-components'
 import theme from '@theme/index'
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
-import { ActivityIndicator } from 'react-native';
+import { Loading } from '@components/Loading';
+import { StatusBar } from 'react-native';
+import { NewGroup } from '@screens/school/NewGroup';
 export default function App() {
 
  const [fontsLoader] = useFonts({ Roboto_400Regular, Roboto_700Bold });
@@ -11,7 +13,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      { fontsLoader ? <Groups /> : <ActivityIndicator/>}
+      { fontsLoader ? <NewGroup /> : <Loading />}
     </ThemeProvider>
   );
 }

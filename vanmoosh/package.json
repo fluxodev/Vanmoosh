@@ -14,16 +14,21 @@
     "expo": "~51.0.14",
     "expo-font": "~12.0.7",
     "expo-status-bar": "~1.12.1",
+    "phosphor-react-native": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native": "0.74.2",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "react-native-svg": "15.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~18.2.45",
     "babel-plugin-module-resolver": "^5.0.2",
     "typescript": "^5.3.3"
+  },
+  "overrides": {
+    "@types/react": "~18.2.45"
   },
   "private": true
 }
