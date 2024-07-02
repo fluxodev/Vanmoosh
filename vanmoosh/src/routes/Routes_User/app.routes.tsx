@@ -15,7 +15,8 @@ export function AppRoutes() {
     return(
         <Navigator
             screenOptions={{
-                headerShown: false
+                headerShown: false,
+                gestureEnabled: false,
             }}
         >
             <Screen

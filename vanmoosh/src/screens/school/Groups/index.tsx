@@ -1,4 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from '@react-navigation/native';
 import { FlatList } from 'react-native';
 import { Container } from './style';
 import { Header } from '@components/Header';
@@ -12,6 +12,11 @@ export default function Groups() {
   const [groups, setGroups] = useState<string[]>([
     ]);
 
+  const navigation = useNavigation();
+
+  function handleNewGroup() {
+    navigation.navigate('NewGroup');
+  }
   return (
     <Container>
       <Header showBackButton />
@@ -37,6 +42,7 @@ export default function Groups() {
       <ButtonAdd
         title="Adicionar Turma"
         type='primary'
+        onPress={handleNewGroup}
         />
 
     </Container>

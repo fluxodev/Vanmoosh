@@ -6,6 +6,8 @@ import { Loading } from '@components/Loading';
 import { StatusBar } from 'react-native';
 import  NewGroup  from '@screens/school/NewGroup';
 import Students from '@screens/school/Students';
+import Routes from '@routes/index';
+
 export default function App() {
 
  const [fontsLoader] = useFonts({ Roboto_400Regular, Roboto_700Bold });
@@ -20,7 +22,7 @@ export default function App() {
       translucent
       />
 
-      { fontsLoader ? <NewGroup /> : <Loading />}
+      { fontsLoader ? <Routes /> : <Loading />}
     </ThemeProvider>
   );
 }
