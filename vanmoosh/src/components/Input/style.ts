@@ -6,7 +6,7 @@ export const Container = styled(TextInput)`
 ${({ theme }) => css`
     flex: 1;
 
-    min-width: 100%;
+    min-width: 95%;
 
     min-height: 56px;
     max-height: 56px;

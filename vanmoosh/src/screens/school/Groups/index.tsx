@@ -14,7 +14,6 @@ export default function Groups() {
 
   return (
     <Container>
-      <StatusBar style="auto" />
       <Header showBackButton />
       <Highlight
         title="Turmas"

@@ -5,6 +5,7 @@ import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/
 import { Loading } from '@components/Loading';
 import { StatusBar } from 'react-native';
 import { NewGroup } from '@screens/school/NewGroup';
+import Students from '@screens/school/Students';
 export default function App() {
 
  const [fontsLoader] = useFonts({ Roboto_400Regular, Roboto_700Bold });
@@ -13,6 +14,12 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
+
+      <StatusBar barStyle="dark-content"
+      backgroundColor="transparent"
+      translucent
+      />
+
       { fontsLoader ? <NewGroup /> : <Loading />}
     </ThemeProvider>
   );
