@@ -9,11 +9,19 @@ import { useState } from "react";
 import { StudentCard } from "@components/StudentCard";
 import { ListEmpty } from "@components/ListEmpty";
 import { ButtonAdd } from "@components/Button";
+import { useRoute } from "@react-navigation/native";
 
 export default function Students() {
 
     const [selectTeam, setSelectTeam] = useState('Todos');
     const [students, setStudents] = useState([]);
+
+    type RouteParams = {
+        group: string;
+    }
+
+    const route = useRoute(); // ele pega as informações da rota
+    const { group } = route.params as RouteParams; // ele pega o parametro que foi passado na rota
 
     return (
         <Container>
@@ -21,8 +29,8 @@ export default function Students() {
             <Header showBackButton />
 
             <Highlight
-                title="Alunos"
-                subTitle="Gerencie os alunos da sua escola."
+                title={group}
+                subTitle="Gerencie os alunos desta turma."
             />
 
             <Form>
