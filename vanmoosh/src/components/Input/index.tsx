@@ -1,8 +1,19 @@
-import { TextInputProps } from "react-native";
+import { TextInputProps,TextInput } from "react-native";
 import { Container } from "./style";
+import { useTheme } from "styled-components";
 
-export function Input({...rest}: TextInputProps) {
+type Props = TextInputProps & {
+    inputRef?: React.RefObject<TextInput>;
+}
+
+export function Input({inputRef, ...rest}: Props) {
+    const { COLORS } = useTheme();
+
+
     return(
-        <Container {...rest}/>
+        <Container 
+        ref={inputRef}
+        {...rest}
+        />
     )
 }

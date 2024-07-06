@@ -1,12 +1,18 @@
 import { Header } from "@components/Header";
-import { Container, Content, Icon } from "./style";
 import { Highlight } from "@components/Highlight";
 import { ButtonAdd } from "@components/Button";
 import { Input } from "@components/Input";
+
+import { Container, Content, Icon } from "./style";
+
 import { useNavigation } from "@react-navigation/native";
+
 import React, { useState } from "react";
+
 import { createGroup } from "@storage/groups/groupCreate";
+
 import { AppError } from "@utils/AppError";
+
 import { Alert } from "react-native";
 
 export default function NewGroup() {
@@ -18,23 +24,22 @@ export default function NewGroup() {
     async function handleNew() {
         try {
 
-            if(group.trim.length === 0) {
+            if (group.trim().length === 0) {
                 return Alert.alert('Erro', 'O nome da turma não pode ser vazio.');
             }
-
 
             await createGroup(group);
 
             navigation.navigate('Students', { group });
 
         } catch (error) {
-            if(error instanceof AppError) {
+            if (error instanceof AppError) {
                 Alert.alert('Erro', error.message);
 
-            } else{
+            } else {
                 Alert.alert('Erro', 'Não foi possível criar a turma. Tente novamente.');
                 console.log(error);
-                
+
             }
         }
     }

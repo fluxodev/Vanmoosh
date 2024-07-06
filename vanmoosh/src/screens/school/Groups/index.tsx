@@ -1,17 +1,22 @@
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import { FlatList } from 'react-native';
+import { useState, useCallback } from 'react';
+import { Alert, FlatList } from 'react-native';
+
 import { Container } from './style';
+
 import { Header } from '@components/Header';
 import { Highlight } from '@components/Highlight';
 import { GroupCard } from '@components/GroupCard';
 import { ListEmpty } from '@components/ListEmpty';
 import { ButtonAdd } from '@components/Button';
-import { useState, useCallback } from 'react';
+import { Loading } from '@components/Loading';
+
 import { getAllGroups } from '@storage/groups/groupsGetAll';
 
+
 export default function Groups() {
-  const [groups, setGroups] = useState<string[]>([
-    ]);
+  const [groups, setGroups] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const navigation = useNavigation();
 
@@ -21,10 +26,18 @@ export default function Groups() {
 
   async function fetchGroups() {
     try {
+
+      setIsLoading(true);
+
       const data = await getAllGroups();
+
       setGroups(data);
+
+      setIsLoading(false);
+
     } catch (error) {
       console.log(error);
+      Alert.alert('Turmas', 'Erro ao buscar turmas!', [{ text: 'OK' }]);
     }
   }
 
@@ -44,26 +57,29 @@ export default function Groups() {
         subTitle="Aqui você pode ver as turmas que você possui no colégio."
       />
 
-      <FlatList
-        data={groups}
-        keyExtractor={(item) => item}
-        renderItem={({ item }) => (
-          <GroupCard
-            title={item}
-            onPress={() => handleOpenGroup(item)}
-          />
-        )}
-        contentContainerStyle={groups.length === 0 && { flex: 1 }} 
-        ListEmptyComponent={
-          () => <ListEmpty message="Nenhuma turma cadastrada!"/>
-        }
-      />
+
+      {isLoading ? <Loading /> :
+        <FlatList
+          data={groups}
+          keyExtractor={(item) => item}
+          renderItem={({ item }) => (
+            <GroupCard
+              title={item}
+              onPress={() => handleOpenGroup(item)}
+            />
+          )}
+          contentContainerStyle={groups.length === 0 && { flex: 1 }}
+          ListEmptyComponent={
+            () => <ListEmpty message="Nenhuma turma cadastrada!" />
+          }
+        />
+      }
 
       <ButtonAdd
         title="Adicionar Turma"
         type='primary'
         onPress={handleNewGroup}
-        />
+      />
 
     </Container>
   );
