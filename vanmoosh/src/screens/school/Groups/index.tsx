@@ -33,12 +33,14 @@ export default function Groups() {
 
       setGroups(data);
 
-      setIsLoading(false);
+      
 
     } catch (error) {
       console.log(error);
       Alert.alert('Turmas', 'Erro ao buscar turmas!', [{ text: 'OK' }]);
-    }
+    } finally { //finally é uma função que é executada independente se o try ou catch der certo
+      setIsLoading(false);
+    }	
   }
 
   function handleOpenGroup(group: string) {

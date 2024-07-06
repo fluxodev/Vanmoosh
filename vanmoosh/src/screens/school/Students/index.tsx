@@ -78,14 +78,15 @@ export default function Students() {
     async function fetchStudentsByTeam() {
         try {
             setIsLoading(true);
-            const studentsByGroup = await StudentGetByGroupAndTeam(group, selectTeam);
-            setStudents(studentsByGroup);
-            setIsLoading(false);
 
+            const studentsByGroup = await StudentGetByGroupAndTeam(group, selectTeam);
+
+            setStudents(studentsByGroup);
         } catch (error) {
             console.log(error);
             Alert.alert('Alunos', 'Não foi possível carregar os alunos.')
-
+        } finally {
+            setIsLoading(false);
         }
 
     };
