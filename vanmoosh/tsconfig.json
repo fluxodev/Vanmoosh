@@ -24,6 +24,9 @@
       ],
       "@utils/*": [
         "./src/utils/*"
+      ],
+      "@libs/*": [
+        "./src/libs/*"
       ]
 
     }

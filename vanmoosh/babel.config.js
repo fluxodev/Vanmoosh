@@ -15,6 +15,7 @@ module.exports = function(api) {
             '@storage': './src/storage', //estou criando um alias para a pasta storage
             '@theme': './src/theme', //estou criando um alias para a pasta theme
             '@utils': './src/utils',  //estou criando um alias para a pasta utils
+            '@libs': './src/libs', //estou criando um alias para a pasta libs
           },
         },
       ],
