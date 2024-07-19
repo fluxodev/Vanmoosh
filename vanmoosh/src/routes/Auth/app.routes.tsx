@@ -2,16 +2,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 //-------------------------------------//----------------------------------//
 
-// Screens Stack Groups School
-import Groups from '@screens/school/Groups';
-import NewGroup  from '@screens/school/NewGroup';
-import Students from '@screens/school/Students';
+import { MainScreen } from '@screens/auth/MainScreen';
+import { SignIn } from '@screens/auth/SignIn';
 
 //-------------------------------------//----------------------------------//
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
-export function AppRoutes() {
+export function AuthRoutes() {
     return(
         <Navigator
             screenOptions={{
@@ -20,17 +18,14 @@ export function AppRoutes() {
             }}
         >
             <Screen
-                name="Groups"
-                component={Groups}
+                name="Main"
+                component={MainScreen}
             />
             <Screen
-                name="NewGroup"
-                component={NewGroup}
+                name="SignIn"
+                component={SignIn}
             />
-            <Screen
-                name="Students"
-                component={Students}
-            />
+            
         </Navigator>
     )
 }
