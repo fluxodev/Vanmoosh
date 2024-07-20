@@ -7,7 +7,6 @@ declare module 'users' {
       role: "common" | "client" | "driver" | "admin";
       additionalInfo: Record<string, any>; // Melhor prática: Record<string, any>
       createdAt: string;
-      expoPushToken?: string; 
     };
   
     // Default User values for initialization

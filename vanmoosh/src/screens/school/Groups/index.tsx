@@ -1,6 +1,6 @@
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { useState, useCallback } from 'react';
-import { Alert, FlatList } from 'react-native';
+import { Alert, FlatList, StatusBar } from 'react-native';
 
 import { Container } from './style';
 
@@ -53,6 +53,7 @@ export default function Groups() {
 
   return (
     <Container>
+
       <Header showBackButton />
       <Highlight
         title="Turmas"

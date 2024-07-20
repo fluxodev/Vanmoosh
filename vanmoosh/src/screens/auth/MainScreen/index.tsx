@@ -1,19 +1,46 @@
-import { Container, MarginBetweenButtons, LogoImage } from './styles'
-import { Image } from 'react-native'
+import { Container, MarginBetweenButtons, Text1, Text2, Text3, Header, BackgroundImage, Footer, MarginBetweenParagraphs, LogoImage } from './styles'
+import { Image,  } from 'react-native'
 import React from 'react'
-import { ButtonAdd } from '@components/Button'
+import { useNavigation } from '@react-navigation/native'
+import { ButtonMain } from '@components/ButtonMain'
 
-import LogoImg from '@assets/Vanmoosh.png'
+import backgroundImg from '@assets/background_main.png'
+import LogoImg from '@assets/logo.png'
+
+import { AuthNavigatorRoutesProps } from '@routes/Auth/app.routes'
 
 export function MainScreen() {
+
+  const navigation = useNavigation<AuthNavigatorRoutesProps>();
+
   return (
     <Container>
 
-        <LogoImage source={LogoImg}/>
-
-          <ButtonAdd title='Entrar ' type='primary'/>
+        <BackgroundImage 
+        source={backgroundImg} 
+        defaultSource={backgroundImg}
+        alt='Imagem de fundo com vans estacionadas.'
+        >
+          <MarginBetweenParagraphs/>
+          <Header>
+          <LogoImage source={LogoImg} alt='Logo da empresa Vanmoosh'/>
+          <Text1>Uma parceria pela</Text1>
+          <Text2>segurança dos</Text2>
+          <Text3>seus filhos.</Text3>
+          </Header>
+          <Footer>
+          <ButtonMain 
+            title='Entrar' 
+            type='secondary'
+            onPress={() => navigation.navigate('SignIn')}
+            />
             <MarginBetweenButtons/>
-          <ButtonAdd title='Primeiro Acesso' type='primary'/>
+          <ButtonMain title='Primeiro Acesso' type='secondary'
+          onPress={() => navigation.navigate('SignUp')}
+          />
+          </Footer>
+        </BackgroundImage>
+
     </Container>
   )
 }
