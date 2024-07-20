@@ -1,35 +1,40 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator, BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+
+//-------------------------------------//----------------------------------//
+import Home_School from '@screens/school/Home';
+import Chat_School from '@screens/school/Chat';
+import Account_School from '@screens/school/Account';
 
 //-------------------------------------//----------------------------------//
 
-// Screens Stack Groups School
-import Groups from '@screens/school/Groups';
-import NewGroup  from '@screens/school/NewGroup';
-import Students from '@screens/school/Students';
+const { Navigator, Screen } = createBottomTabNavigator<SchoolRoutesProps>();
 
-//-------------------------------------//----------------------------------//
+type SchoolRoutesProps = {
+    Home_School: undefined;
+    Chat_School: undefined;
+    Account_School: undefined;
+}
 
-const { Navigator, Screen } = createNativeStackNavigator();
+export type SchoolNavigatorRoutesProps = BottomTabNavigationProp<SchoolRoutesProps>;
 
 export function SchoolRoutes() {
     return(
         <Navigator
             screenOptions={{
                 headerShown: false,
-                gestureEnabled: false,
             }}
         >
             <Screen
-                name="Groups"
-                component={Groups}
+                name="Home_School"
+                component={Home_School}
             />
             <Screen
-                name="NewGroup"
-                component={NewGroup}
+                name="Chat_School"
+                component={Chat_School}
             />
             <Screen
-                name="Students"
-                component={Students}
+                name="Account_School"
+                component={Account_School}
             />
         </Navigator>
     )
