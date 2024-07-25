@@ -15,7 +15,7 @@ export function Header({showBackButton = false}: Props){
     function handleGoBack(){
         navigation.goBack();
     }
-
+    
     return (
         <Container>
             {showBackButton && <BackButton onPress={handleGoBack}>

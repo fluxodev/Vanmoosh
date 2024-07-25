@@ -21,7 +21,7 @@ export function HeaderSettingsSchools(){
                 <Title>Colégio Politécnico Bento Quirino</Title>
             </DivFlexRow>
             
-            <UserPhoto source={logoImg} />
+            <UserPhoto source={logoImg} defaultSource={logoImg}/>
             
             
         </Container>
