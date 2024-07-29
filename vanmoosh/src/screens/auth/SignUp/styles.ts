@@ -45,7 +45,7 @@ export const MarginBottom = styled(View)`
 `;
 export const TextError = styled.Text`
     font-size: ${({ theme }) => theme.FONT_SIZE.XS}px;
-    color: ${({ theme }) => theme.COLORS.BRAND_MID};
+    color: ${({ theme }) => theme.COLORS.BRAND_DARK};
     font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
     justify-content: center;
     align-items: center;

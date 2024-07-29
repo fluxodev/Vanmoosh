@@ -9,6 +9,7 @@ import {
   styles
 } from './styles'
 import { Text } from 'react-native'
+import { TextError } from '../SignUp/styles'
 import { StatusBar, Pressable } from 'react-native'
 import React from 'react'
 import { Highlight } from '@components/Highlight'
@@ -17,6 +18,20 @@ import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react'
 import { AuthNavigatorRoutesProps } from '@routes/Auth/app.routes'
 
+import { useForm, Controller } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+type FormDataProps = {
+  email: string;
+  password: string;
+};
+
+
+const signInSchema = yup.object({
+  email: yup.string().email("E-mail inválido").required("E-mail é obrigatório"),
+  password: yup.string().required("Senha é obrigatório").min(6, "Mínimo de 6 caracteres"),
+});
 
 
 
@@ -29,11 +44,21 @@ import background from '@assets/background.png'
 
 
 export function SignIn() {
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormDataProps>({
+    resolver: yupResolver(signInSchema),
+  });
+
   const [isLoading, setIsLoading] = useState(true);
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
-  function handleLogin(){
-    navigation.navigate('Main')
+  function handleLogin(data: FormDataProps) {
+    console.log(data);
+    
   }
 
   return ( 
@@ -53,24 +78,49 @@ export function SignIn() {
 
           <ViewInputs>
             <Highlight title='Bem-vindo de volta!' subTitle='Faça login para continuar.' />
-            <Input 
-            placeholder='E-mail' 
-            returnKeyType='done'
-            autoCapitalize='none'
-            />
+
+            <Controller
+            control={control}
+            name="email"
+            render={(
+              { field: { onChange, value } } //field é um objeto que contem o onChange, que serve para alterar o valor do input que vem de um componente controlado pelo react-hook-form
+            ) => (
+              <Input 
+                placeholder='E-mail' 
+                returnKeyType='done'
+                autoCapitalize='none'
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+          />
+
+          {errors.email && <TextError>{errors.email.message}</TextError>}
+
             <MarginBetweenInputs />
-            <Input 
-            placeholder='Senha' 
-            returnKeyType='done'
-            secureTextEntry={true}
-            
-            />
+            <Controller
+            control={control}
+            name="password"
+            render={(
+              { field: { onChange, value } } //field é um objeto que contem o onChange, que serve para alterar o valor do input que vem de um componente controlado pelo react-hook-form
+            ) => (
+              <Input 
+              placeholder='Senha' 
+              returnKeyType='done'
+              secureTextEntry={true}
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+          />
+
+            {errors.password && <TextError>{errors.password.message}</TextError>}
 
             
             <MarginBetweenInputs />
             <ButtonAdd 
             title='Entrar'
-            onPress={() => handleLogin()}
+            onPress={handleSubmit(handleLogin)}
             />
 
             <Pressable
