@@ -15,7 +15,6 @@ import { Highlight } from '@components/Highlight'
 import { Input } from '@components/Input'
 import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react'
-import { registerUser } from '@libs/firebase/auth'
 
 
 
@@ -30,9 +29,17 @@ import background from '@assets/background.png'
 
 export function SignUp() {
 
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   
 
   const navigation = useNavigation()
+
+  function handleSignUp(){
+    console.log(`Email: ${email} - Senha: ${password} - Nome: ${name}`);
+    
+  }
 
   return ( 
     
@@ -54,7 +61,7 @@ export function SignUp() {
           <Input 
             placeholder='Nome Completo' 
             returnKeyType='done'
-            
+            onChangeText={setName}
             />
             <MarginBetweenInputs />
             
@@ -62,12 +69,14 @@ export function SignUp() {
             placeholder='E-mail' 
             returnKeyType='done'
             autoCapitalize='none'
+            onChangeText={setEmail}
             />
             <MarginBetweenInputs />
             <Input 
             placeholder='Senha' 
             returnKeyType='done'
             secureTextEntry={true}
+            onChangeText={setPassword}
             
             />
 
@@ -75,7 +84,7 @@ export function SignUp() {
             <MarginBetweenInputs />
             <ButtonAdd 
             title='Entrar'
-            onPress={() => navigation.navigate('NewGroup')}
+            onPress={() => handleSignUp()}
             />
 
             <Pressable

@@ -23,7 +23,7 @@ export function MainScreen() {
         >
           <MarginBetweenParagraphs/>
           <Header>
-          <LogoImage source={LogoImg} alt='Logo da empresa Vanmoosh'/>
+          <LogoImage source={LogoImg} alt='Logo da empresa Vanmoosh' />
           <Text1>Uma parceria pela</Text1>
           <Text2>segurança dos</Text2>
           <Text3>seus filhos.</Text3>

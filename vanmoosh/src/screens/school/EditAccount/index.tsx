@@ -6,7 +6,9 @@ import theme from "@theme/index";
 import LogoImg from '@assets/logo.png'
 import { SchoolNavigatorRoutesProps } from "@routes/Routes_School/app.routes";
 import * as ImagePicker from 'expo-image-picker';
+import * as FileSystem from 'expo-file-system';
 import { useState } from "react";
+import { Alert } from "react-native";
 
 
 export default function EditAccount() {
@@ -38,6 +40,13 @@ export default function EditAccount() {
         }
         
         if (photoSelected.assets[0].uri){
+
+            const photoInfo = await FileSystem.getInfoAsync(photoSelected.assets[0].uri); // Pega informações da imagem
+
+            if(photoInfo.exists && (photoInfo.size / 1024 / 1024 > 3) ){ // Se a imagem for maior que 3mb
+                Alert.alert('Erro', 'A imagem não pode ser maior que 5MB');
+            }
+
             setUserPhoto(photoSelected.assets[0].uri);
         }
        
