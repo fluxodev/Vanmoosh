@@ -43,6 +43,17 @@ export const MarginBetweenTexts = styled(View)`
 export const MarginBottom = styled(View)`
     margin-bottom: 70px;
 `;
+export const TextError = styled.Text`
+    font-size: ${({ theme }) => theme.FONT_SIZE.XS}px;
+    color: ${({ theme }) => theme.COLORS.BRAND_MID};
+    font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+    justify-content: center;
+    align-items: center;
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: -5px;
+`;
+
 
 export const styles = StyleSheet.create({
     forgot: {
@@ -54,5 +65,6 @@ export const styles = StyleSheet.create({
     color: '#000', // Cor desejada
     fontSize: 16,
     fontWeight: 'bold',
+    marginTop: -10,
     }
 });
