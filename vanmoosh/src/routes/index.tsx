@@ -16,7 +16,7 @@ export default function Routes() {
     return (
         <NavigationContainer theme={themeNavigator}>
 
-            <AuthRoutes />
+            <SchoolRoutes />
 
         </NavigationContainer>
     )

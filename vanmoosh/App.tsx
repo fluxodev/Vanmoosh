@@ -7,6 +7,7 @@ import { StatusBar } from 'react-native';
 import  NewGroup  from '@screens/school/NewGroup';
 import Students from '@screens/school/Students';
 import Routes from '@routes/index';
+import {SafeAreaProvider} from 'react-native-safe-area-context'
 
 export default function App() {
 
@@ -16,13 +17,14 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-
+      
       <StatusBar barStyle="dark-content"
       backgroundColor="transparent"
       translucent
       />
-
+      <SafeAreaProvider>
       { fontsLoader ? <Routes /> : <Loading />}
+      </SafeAreaProvider>
     </ThemeProvider>
   );
 }
