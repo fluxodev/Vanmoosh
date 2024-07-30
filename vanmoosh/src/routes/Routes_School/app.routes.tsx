@@ -11,6 +11,9 @@ import Home_School from '@screens/school/Home';
 import Chat_School from '@screens/school/Chat';
 import Account_School from '@screens/school/Account';
 import EditAccount from '@screens/school/EditAccount';
+import Groups from '@screens/school/Groups';
+import Students from '@screens/school/Students';
+import NewGroup from '@screens/school/NewGroup';
 
 //-------------------------------------//----------------------------------//
 
@@ -22,6 +25,9 @@ type SchoolRoutesProps = {
     Chat_School: undefined;
     Account_School: undefined;
     EditAccount_School: undefined;
+    Groups: undefined;
+    Students: undefined;
+    NewGroup: undefined;
 }
 
 export type SchoolNavigatorRoutesProps = BottomTabNavigationProp<SchoolRoutesProps>;
@@ -122,6 +128,30 @@ export function SchoolRoutes() {
             <Screen 
             name='EditAccount_School'
             component={EditAccount}
+            options={{
+                tabBarButton: () => null,
+                tabBarStyle: {display: 'none'},
+            }}
+            />
+            <Screen 
+            name='Groups'
+            component={Groups}
+            options={{
+                tabBarButton: () => null,
+                tabBarStyle: {display: 'none'},
+            }}
+            />
+            <Screen 
+            name='NewGroup'
+            component={NewGroup}
+            options={{
+                tabBarButton: () => null,
+                tabBarStyle: {display: 'none'},
+            }}
+            />
+            <Screen 
+            name='Students'
+            component={Students}
             options={{
                 tabBarButton: () => null,
                 tabBarStyle: {display: 'none'},
