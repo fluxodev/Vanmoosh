@@ -7,7 +7,7 @@ export function HeaderLogo() {
   return (
 
       <HeaderBox>
-        <Header source={HeaderImg} />
+        <Header source={HeaderImg} defaultSource={HeaderImg}/>
       </HeaderBox>
 
   )

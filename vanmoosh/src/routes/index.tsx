@@ -4,6 +4,7 @@ import theme from '@theme/index';
 
 import { SchoolRoutes } from './Routes_School/app.routes';
 import { AuthRoutes } from './Auth/app.routes';
+import { DriverRoutes } from './Routes_Driver/app.routes';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -16,7 +17,7 @@ export default function Routes() {
     return (
         <NavigationContainer theme={themeNavigator}>
 
-            <SchoolRoutes />
+            <DriverRoutes />
 
         </NavigationContainer>
     )

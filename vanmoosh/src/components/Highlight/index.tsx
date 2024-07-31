@@ -2,7 +2,7 @@ import { Container, Title, SubTitle } from "./style";
 
 type Props = {
     title: string;
-    subTitle: string;
+    subTitle?: string;
 }
 
 export function Highlight({ title, subTitle }: Props) {

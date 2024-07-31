@@ -8,8 +8,6 @@ export const HeaderBox = styled.View`
     height : 150px;
     position: absolute;
     top: 0;
-    border-width: 1px;
-    border-color: red;
     border-radius: 10px;
 `;
 export const Header = styled(Image)`
@@ -17,5 +15,6 @@ export const Header = styled(Image)`
     height: ${Platform.OS === 'ios' ? 125 : 120}px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    margin-top: -10px;
 `;
 

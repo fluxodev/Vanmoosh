@@ -16,6 +16,8 @@ export default {
     GRAY_700: '#29292E',
     GRAY_600: '#323238',
 
+    WHITE_GRAY: '#f1f1f1',
+
   },
   FONT_FAMILY: {
     REGULAR: 'Roboto_400Regular',
@@ -23,6 +25,7 @@ export default {
   },
 
   FONT_SIZE: {
+    P: 10,
     XS: 12,
     SM: 14,
     MD: 16,

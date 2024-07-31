@@ -1,6 +1,7 @@
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { useState, useCallback } from 'react';
 import { Alert, FlatList, StatusBar } from 'react-native';
+import { SchoolNavigatorRoutesProps } from '@routes/Routes_School/app.routes';
 
 import { Container } from './style';
 
@@ -18,7 +19,7 @@ export default function Groups() {
   const [groups, setGroups] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<SchoolNavigatorRoutesProps>();
 
   function handleNewGroup() {
     navigation.navigate('NewGroup');
@@ -44,7 +45,7 @@ export default function Groups() {
   }
 
   function handleOpenGroup(group: string) {
-    navigation.navigate('Students', { group });
+    navigation.navigate('Students');
   }
 
   useFocusEffect(useCallback(() => { //use callback é uma função que é executada toda vez que a tela é focada
