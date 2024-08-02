@@ -17,6 +17,8 @@ module.exports = function(api) {
             '@utils': './src/utils',  //estou criando um alias para a pasta utils
             '@libs': './src/libs', //estou criando um alias para a pasta libs
             '@types': './src/@types', //estou criando um alias para a pasta types
+            '@hooks': './src/hooks',
+            '@contexts': './src/contexts',
           },
         },
       ],

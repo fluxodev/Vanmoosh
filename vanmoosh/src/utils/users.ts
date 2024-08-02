@@ -5,6 +5,7 @@ export type User = {
     age: number;
     role: "common" | "school" | "driver" | "admin";
     createdAt: string;
+    avatar?: string;
   };
 
   // Default User values for initialization
@@ -13,6 +14,8 @@ export type User = {
     email: "",
     password: "",
     age: 0,
-    role: "school",
+    role: "common",
     createdAt: "",
   };
+
+  // acima foi criado DTOs para controle dos nossos usuários, com isso podemos criar um contexto para manipular os dados do usuário

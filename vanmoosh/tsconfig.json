@@ -31,6 +31,12 @@
       "@types/*": [
         "./src/@types/*"
       ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@contexts/*": [
+        "./src/contexts/*"
+      ]
 
     }
   }

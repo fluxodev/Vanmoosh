@@ -6,11 +6,20 @@ import { SchoolRoutes } from './Routes_School/app.routes';
 import { AuthRoutes } from './Auth/app.routes';
 import { DriverRoutes } from './Routes_Driver/app.routes';
 
-import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import { useContext } from 'react';
+import { authContext } from '@contexts/AuthContext';
+import { useAuth } from '@hooks/useAuth';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
 export default function Routes() {
+
+    const { user } = useAuth();
+
+    const contextData = useContext(authContext);
+    console.log(contextData);
+    
+
     const { COLORS } = theme;
 
     const themeNavigator = DefaultTheme;
