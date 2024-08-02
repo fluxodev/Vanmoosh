@@ -1,4 +1,4 @@
-import { User } from "users";
+import { User } from "@utils/users";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -22,21 +22,27 @@ interface RegisterUserError {
 }
 
 // Tipo para o retorno da função registerUser
-type RegisterUserResponse = RegisterUserSuccess | RegisterUserError;
+export type RegisterUserResponse = RegisterUserSuccess | RegisterUserError;
 
 const auth = getAuth(firebaseInstance);
 const db = getFirestore(firebaseInstance);
 
 // Função para registrar um novo usuário
-export const registerUser = async (user: User, password: string): Promise<RegisterUserResponse> => {
+export const registerUser = async (user: User, password: string) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, user.email, password);
 
-    const userDocRef = doc(db, "users", userCredential.user.uid) as DocumentReference<User>;
-    const updatedUser: User = {...user, createdAt: new Date().toISOString()};
-    await setDoc(userDocRef, updatedUser);
+    const t = userCredential.user.uid;
 
-    return { userDocRef, userCredential };
+    
+
+    const userDocRef = await doc(db, "users", t);
+    const updatedUser: User = {...user, createdAt: new Date().toISOString()};
+    await setDoc(doc(db, "users", t), updatedUser);
+
+     return { userDocRef, userCredential };
+      ;
+    
   } catch (error) {
     const authError = error as AuthError; 
 

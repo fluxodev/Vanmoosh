@@ -19,12 +19,20 @@ import { ButtonAdd } from "@components/Button";
 
 import { useNavigation } from "@react-navigation/native";
 
+import { registerUser } from "@libs/firebase/auth";
+
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import LogoImg from "@assets/white_vanmoosh.png";
 import background from "@assets/background.png";
+
+import { User, defaultUser } from "@utils/users";
+
+import { useState } from "react";
+
+import { SchoolNavigatorRoutesProps } from "@routes/Routes_School/app.routes";
 
 type FormDataProps = {
   name: string;
@@ -39,6 +47,9 @@ const signUpSchema = yup.object({
 });
 
 export function SignUp() {
+
+  const [user, setUser] = useState<User>(defaultUser);
+
   const {
     control,
     handleSubmit,
@@ -48,10 +59,29 @@ export function SignUp() {
   });
   //control serve para controlar o formulário
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<SchoolNavigatorRoutesProps>();
 
-  function handleSignUp(data: FormDataProps) {
-    console.log(data);
+  async function handleSignUp(data: FormDataProps) {
+    try {
+      const { name, email, password } = data;
+
+    const newUser: User = {
+      ...defaultUser,
+      name,
+      email,
+      password,
+      
+    };
+
+    const registerUserResponse = await registerUser(newUser, password);
+
+    setUser(newUser);
+    //navigation.navigate('Home_School');
+
+    } catch (error) {
+      console.log(error);
+    }
+    
   }
 
   return (

@@ -1,8 +1,19 @@
 import { Container, TextSup, Placa } from './styles'
+import { useState } from 'react'
+import { TextInputProps } from 'react-native'
+
+type Props = TextInputProps & {
+
+}
 
 
 
-export default function PlacaInput() {
+export default function PlacaInput({...rest}: Props) {
+
+  const [placa, setPlaca] = useState('')
+
+
+
   return (
     <Container>
         <TextSup> 
@@ -11,7 +22,8 @@ export default function PlacaInput() {
 
         <Placa
         autoCapitalize="characters"
-        editable={false}
+        maxLength={7}
+        {...rest}
         >
             ISA2C13
         </Placa>

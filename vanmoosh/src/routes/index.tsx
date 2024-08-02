@@ -6,6 +6,8 @@ import { SchoolRoutes } from './Routes_School/app.routes';
 import { AuthRoutes } from './Auth/app.routes';
 import { DriverRoutes } from './Routes_Driver/app.routes';
 
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
+
 const { Navigator, Screen } = createNativeStackNavigator();
 
 export default function Routes() {
@@ -17,7 +19,7 @@ export default function Routes() {
     return (
         <NavigationContainer theme={themeNavigator}>
 
-            <DriverRoutes />
+            <AuthRoutes />
 
         </NavigationContainer>
     )

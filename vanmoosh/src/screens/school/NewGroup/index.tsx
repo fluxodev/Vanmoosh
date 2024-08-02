@@ -15,11 +15,13 @@ import { AppError } from "@utils/AppError";
 
 import { Alert } from "react-native";
 
+import { SchoolNavigatorRoutesProps } from "@routes/Routes_School/app.routes";
+
 export default function NewGroup() {
 
     const [group, setGroup] = useState('') // [1
 
-    const navigation = useNavigation();
+    const navigation = useNavigation<SchoolNavigatorRoutesProps>();
 
     async function handleNew() {
         try {
@@ -30,7 +32,7 @@ export default function NewGroup() {
 
             await createGroup(group);
 
-            navigation.navigate('Students', { group });
+            navigation.navigate('Students');
 
         } catch (error) {
             if (error instanceof AppError) {

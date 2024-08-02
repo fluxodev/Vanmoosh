@@ -17,11 +17,14 @@ import { Input } from '@components/Input'
 import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react'
 import { AuthNavigatorRoutesProps } from '@routes/Auth/app.routes'
+import { SchoolNavigatorRoutesProps } from '@routes/Routes_School/app.routes'
 
 
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+
+import { signInWithEmail } from '@libs/firebase/auth'
 
 type FormDataProps = {
   email: string;
@@ -55,10 +58,19 @@ export function SignIn() {
   });
 
   const [isLoading, setIsLoading] = useState(true);
-  const navigation = useNavigation<AuthNavigatorRoutesProps>()
+  const navigation = useNavigation<SchoolNavigatorRoutesProps>()
 
-  function handleLogin(data: FormDataProps) {
-    console.log(data);
+  async function handleLogin(data: FormDataProps) {
+
+    const response = await signInWithEmail(data.email, data.password);
+    
+    if (response) {
+      console.log(response.message);
+      return;
+    }
+
+
+    navigation.navigate('Home_School')
     
   }
 

@@ -6,6 +6,7 @@ export const Container = styled.SafeAreaView`
     border-radius: 8px;
 
     background-color: ${({ theme }) => theme.COLORS.WHITE_GRAY};
+    margin-bottom: 16px;
 `;
 
 export const TextSup = styled.Text`
