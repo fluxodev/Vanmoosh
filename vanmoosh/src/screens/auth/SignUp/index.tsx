@@ -168,9 +168,9 @@ export function SignUp() {
           </Pressable>
 
           <MarginBetweenTexts />
-          <Text style={styles.notHaveAccount}>Ainda não possui uma conta?</Text>
+          <Text style={styles.notHaveAccount}>Já possui uma conta?</Text>
           <Pressable onPress={() => navigation.goBack()}>
-            <Text style={styles.forgot}>Registre-se</Text>
+            <Text style={styles.forgot}>Entre</Text>
           </Pressable>
           <MarginBottom />
         </ViewInputs>

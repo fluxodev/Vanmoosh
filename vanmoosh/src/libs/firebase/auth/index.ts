@@ -6,6 +6,7 @@ import {
   AuthError,
   UserCredential,
 } from "firebase/auth";
+
 import { getFirestore, doc, setDoc, DocumentReference } from "firebase/firestore";
 import firebaseInstance from "../config";
 
@@ -39,6 +40,9 @@ export const registerUser = async (user: User, password: string) => {
     const userDocRef = await doc(db, "users", t);
     const updatedUser: User = {...user, createdAt: new Date().toISOString()};
     await setDoc(doc(db, "users", t), updatedUser);
+
+    console.log(userCredential);
+    
 
      return { userDocRef, userCredential };
       ;

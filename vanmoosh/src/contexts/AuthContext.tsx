@@ -1,33 +1,61 @@
-import { createContext, ReactNode } from "react";
-import { User } from "@utils/users";
+import { createContext, ReactNode, useState } from "react";
+import { User, defaultUser } from "@utils/users";
+import { signInWithEmail } from "@libs/firebase/auth";
+import { saveUser } from "@storage/auth/storageUser";
 
 export type AuthContextDataProps = {
-    user: User;
-}
+  user: User;
+  signIn: (email: string, password: string) => Promise<void>;
+};
 
 type AuthContextProviderProps = {
-    children: ReactNode;
-}
+  children: ReactNode;
+};
 
-export const authContext = createContext<AuthContextDataProps>({} as AuthContextDataProps);
+export const authContext = createContext<AuthContextDataProps>(
+  {} as AuthContextDataProps
+);
 
-export function AuthContextProvider({children}: AuthContextProviderProps) {
-    return (
-        <authContext.Provider
-          value={{
-            user: {
-              name: "Colégio Politécnico Bento Quirino",
-              email: "bentoquirino@gmail.com",
-              password: "string",
-              age: 0,
-              role: "school",
-              createdAt: "2024-08-01T21:46:55.713Z",
-              avatar:
-                "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png",
-            },
-          }}
-        >
-          {children}
-        </authContext.Provider>
-    )
+export function AuthContextProvider({ children }: AuthContextProviderProps) {
+  const [user, setUser] = useState<User>({} as User);
+
+  async function signIn(email: string, password: string) {
+    try {
+      const response = await signInWithEmail(email, password);
+      console.log(response);
+      
+
+
+      
+      if (response) {
+        console.log(response.message);
+        return;
+      }
+
+      setUser({
+        ...user,
+        email,
+        password,
+      })
+      
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  
+    
+
+
+  return (
+    <authContext.Provider
+      value={{
+        user,
+        signIn,
+      }}
+    >
+      {children}
+    </authContext.Provider>
+  );
 }

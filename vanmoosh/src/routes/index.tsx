@@ -16,8 +16,7 @@ export default function Routes() {
 
     const { user } = useAuth();
 
-    const contextData = useContext(authContext);
-    console.log(contextData);
+    console.log(user);
     
 
     const { COLORS } = theme;
@@ -28,7 +27,7 @@ export default function Routes() {
     return (
         <NavigationContainer theme={themeNavigator}>
 
-            <AuthRoutes />
+            {user.email ? <SchoolRoutes/> :  <AuthRoutes />}
 
         </NavigationContainer>
     )
