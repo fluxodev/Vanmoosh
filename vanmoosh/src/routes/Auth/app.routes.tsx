@@ -5,7 +5,8 @@ import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-na
 import { MainScreen } from '@screens/auth/MainScreen';
 import { SignIn } from '@screens/auth/SignIn';
 import { SignUp } from '@screens/auth/SignUp';
-
+import { SelectUser } from '@screens/auth/selectUser';
+import { CommomUserRegister } from '@screens/auth/CommonUserRegister';
 
 //-------------------------------------//----------------------------------//
 
@@ -13,6 +14,8 @@ type AuthRoutes = { //definimos rotas de autenticação
     Main: undefined;
     SignIn: undefined;
     SignUp: undefined;
+    SelectUser: undefined;
+    CommomUserRegister: undefined;
 
 }
 
@@ -24,11 +27,14 @@ const { Navigator, Screen } = createNativeStackNavigator<AuthRoutes>();
 export function AuthRoutes() {
     return(
         <Navigator
+            initialRouteName='SignUp'
             screenOptions={{
                 headerShown: false,
                 gestureEnabled: false,
+                
             }}
         >
+            
             <Screen
                 name="Main"
                 component={MainScreen}
@@ -40,6 +46,14 @@ export function AuthRoutes() {
             <Screen
                 name="SignUp"
                 component={SignUp}
+            />
+            <Screen
+                name="SelectUser"
+                component={SelectUser}
+            />
+            <Screen
+                name="CommomUserRegister"
+                component={CommomUserRegister}
             />
             
         </Navigator>

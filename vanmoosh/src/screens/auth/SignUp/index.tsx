@@ -33,6 +33,7 @@ import { User, defaultUser } from "@utils/users";
 import { useState } from "react";
 
 import { SchoolNavigatorRoutesProps } from "@routes/Routes_School/app.routes";
+import { AuthNavigatorRoutesProps } from "@routes/Auth/app.routes";
 
 type FormDataProps = {
   name: string;
@@ -59,7 +60,7 @@ export function SignUp() {
   });
   //control serve para controlar o formulário
 
-  const navigation = useNavigation<SchoolNavigatorRoutesProps>();
+  const navigation = useNavigation<AuthNavigatorRoutesProps>();
 
   async function handleSignUp(data: FormDataProps) {
     try {
@@ -76,7 +77,7 @@ export function SignUp() {
     const registerUserResponse = await registerUser(newUser, password);
 
     setUser(newUser);
-    //navigation.navigate('Home_School');
+    navigation.navigate('CommomUserRegister');
 
     } catch (error) {
       console.log(error);

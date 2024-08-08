@@ -2,7 +2,12 @@ export type User = {
     name: string;
     email: string;
     password: string;
-    age: number;
+    cpf?: string;
+    telefone: string;
+    birthdayDate?: string;
+    cep: string;
+    address: string;
+    aggregate?: string;
     role: "common" | "school" | "driver" | "admin";
     createdAt: string;
     avatar?: string;
@@ -13,7 +18,12 @@ export type User = {
     name: "",
     email: "",
     password: "",
-    age: 0,
+    cpf: "",
+    telefone: "",
+    birthdayDate: "",
+    cep: "",
+    address: "",
+    aggregate: "",
     role: "common",
     createdAt: "",
   };
