@@ -26,13 +26,15 @@ import { studentRemoveByGroup } from "@storage/students/studentRemoveByGroup";
 import { groupRemoveByName } from "@storage/groups/groupRemoveByName";
 import { Loading } from "@components/Loading";
 
+import { SchoolNavigatorRoutesProps } from "@routes/Routes_School/app.routes";
+
 export default function Students() {
 
     const [isLoading, setIsLoading] = useState(true);
     const [selectTeam, setSelectTeam] = useState('Todos');
     const [students, setStudents] = useState<StudentStorageDTO[]>([]);
     const [newStudent, setNewStudent] = useState('');
-    const navigation = useNavigation();
+    const navigation = useNavigation<SchoolNavigatorRoutesProps>();
 
     type RouteParams = {
         group: string;
@@ -40,6 +42,8 @@ export default function Students() {
 
     const route = useRoute(); // ele pega as informações da rota
     const { group } = route.params as RouteParams; // ele pega o parametro que foi passado na rota
+    console.log(group);
+    
 
     const newStudentNameInputRef = useRef<TextInput>(null);
 

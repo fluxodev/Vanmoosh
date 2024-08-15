@@ -1,24 +1,15 @@
 import { initializeApp } from "firebase/app";
-import { 
-  FIREBASE_API_KEY, 
-  FIREBASE_AUTH_DOMAIN, 
-  FIREBASE_DATABASE_URL, 
-  FIREBASE_PROJECT_ID, 
-  FIREBASE_STORAGE_BUCKET, 
-  FIREBASE_MESSAGING_SENDER_ID, 
-  FIREBASE_APP_ID 
-} from '@env';
 
 import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 
 const firebaseConfig = {
-  apiKey: FIREBASE_API_KEY,
-  authDomain: FIREBASE_AUTH_DOMAIN,
-  databaseURL: FIREBASE_DATABASE_URL,
-  projectId: FIREBASE_PROJECT_ID,
-  storageBucket: FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
-  appId: FIREBASE_APP_ID,
+  apiKey: "AIzaSyCRhWwKoymhh9ElvmsqFOgc5H77V2chjA0",
+  authDomain: "vanmoosh-app.firebaseapp.com",
+  databaseURL: "https://vanmoosh-app-default-rtdb.firebaseio.com",
+  projectId: "vanmoosh-app",
+  storageBucket: "vanmoosh-app.appspot.com",
+  messagingSenderId: "966117312594",
+  appId: "1:966117312594:web:03055920aac4091d6c778b"
 };
 
 export default initializeApp(firebaseConfig);

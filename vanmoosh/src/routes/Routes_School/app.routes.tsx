@@ -14,6 +14,7 @@ import EditAccount from '@screens/school/EditAccount';
 import Groups from '@screens/school/Groups';
 import Students from '@screens/school/Students';
 import NewGroup from '@screens/school/NewGroup';
+import { ManageDriver } from '@screens/school/ManageDrivers';
 
 //-------------------------------------//----------------------------------//
 
@@ -26,8 +27,9 @@ type SchoolRoutesProps = {
     Account_School: undefined;
     EditAccount_School: undefined;
     Groups: undefined;
-    Students: undefined;
     NewGroup: undefined;
+    ManageDriver: undefined;
+    Students: undefined;
 }
 
 export type SchoolNavigatorRoutesProps = BottomTabNavigationProp<SchoolRoutesProps>;
@@ -152,6 +154,14 @@ export function SchoolRoutes() {
             <Screen 
             name='Students'
             component={Students}
+            options={{
+                tabBarButton: () => null,
+                tabBarStyle: {display: 'none'},
+            }}
+            />
+            <Screen 
+            name='ManageDriver'
+            component={ManageDriver}
             options={{
                 tabBarButton: () => null,
                 tabBarStyle: {display: 'none'},

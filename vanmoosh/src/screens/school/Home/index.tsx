@@ -14,8 +14,7 @@ export default function Home_School() {
   const navigation = useNavigation<SchoolNavigatorRoutesProps>()
   
 function HandleOnMotoristas() {
-  console.log('Botão Motoristas')
-  Alert.alert('Motoristas', 'Em breve você poderá gerenciar os motoristas da sua escola.')
+  navigation.navigate('ManageDriver')
 }
 
 function HandleOnTurmas(){
