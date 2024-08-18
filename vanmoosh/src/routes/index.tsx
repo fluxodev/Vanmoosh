@@ -5,6 +5,7 @@ import theme from '@theme/index';
 import { SchoolRoutes } from './Routes_School/app.routes';
 import { AuthRoutes } from './Auth/app.routes';
 import { DriverRoutes } from './Routes_Driver/app.routes';
+import { Home_Responsible } from '@screens/responsible/Home';
 
 import { useContext } from 'react';
 import { authContext } from '@contexts/AuthContext';
@@ -26,8 +27,9 @@ export default function Routes() {
     
     return (
         <NavigationContainer theme={themeNavigator}>
+            {<Home_Responsible/>}
 
-            {!user.email ? <SchoolRoutes/> :  <AuthRoutes />}
+            {/* {!user.email ? <SchoolRoutes/> :  <AuthRoutes />} */}
 
         </NavigationContainer>
     )
