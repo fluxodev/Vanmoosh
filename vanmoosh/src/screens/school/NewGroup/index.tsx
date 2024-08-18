@@ -9,7 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import React, { useState } from "react";
 
-import { createGroup } from "@storage/groups/groupCreate";
+import { createGroup } from "@libs/firebase/db/groups/groupCreate";
 
 import { AppError } from "@utils/AppError";
 
@@ -32,7 +32,7 @@ export default function NewGroup() {
 
             await createGroup(group);
 
-            navigation.navigate('Students');
+            navigation.navigate('Students', { group });
 
         } catch (error) {
             if (error instanceof AppError) {

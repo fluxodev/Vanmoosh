@@ -12,7 +12,7 @@ import { ListEmpty } from '@components/ListEmpty';
 import { ButtonAdd } from '@components/Button';
 import { Loading } from '@components/Loading';
 
-import { getAllGroups } from '@storage/groups/groupsGetAll';
+import { getAllGroups } from '@libs/firebase/db/groups/getAllGroups';
 
 
 export default function Groups() {
@@ -45,7 +45,7 @@ export default function Groups() {
   }
 
   function handleOpenGroup(group: string) {
-    navigation.navigate('Students');
+    navigation.navigate('Students', {group});
   }
 
   useFocusEffect(useCallback(() => { //use callback é uma função que é executada toda vez que a tela é focada
