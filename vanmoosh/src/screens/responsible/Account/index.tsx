@@ -3,11 +3,10 @@ import { useNavigation } from '@react-navigation/native'
 
 import { Container } from './style'
 
+import { AddChild } from '../AddChild'
 
 import { OptionsCard } from '@components/OptionsCard'
-import { SchoolNavigatorRoutesProps } from '@routes/Routes_School/app.routes'
 import { HeaderAccount } from '@components/HeaderAccount'
-import { UserPhoto } from '@components/UserPhoto'
 
 export default function Account_Responsible() {
 
@@ -20,7 +19,7 @@ export default function Account_Responsible() {
 
       <OptionsCard title='Configuração' />
       <OptionsCard title='Editar Informações'/>
-      <OptionsCard title='Adicionar filho(a)' />
+      <OptionsCard title='Adicionar filho(a)' onPress={() => {}} />
     </Container>
   )
 }

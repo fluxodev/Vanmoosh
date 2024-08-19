@@ -11,6 +11,7 @@ import Account_Responsible from '@screens/responsible/Account';
 import { useContext } from 'react';
 import { authContext } from '@contexts/AuthContext';
 import { useAuth } from '@hooks/useAuth';
+import { AddChild } from '@screens/responsible/AddChild';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -28,9 +29,9 @@ export default function Routes() {
     
     return (
         <NavigationContainer theme={themeNavigator}>
-            {<Account_Responsible/>}
+        
 
-            {/* {!user.email ? <SchoolRoutes/> :  <AuthRoutes />} */}
+             {!user.email ? <AddChild /> :  <AuthRoutes />} 
 
         </NavigationContainer>
     )

@@ -1,7 +1,7 @@
 import { Container, Title, SubTitle } from "./style";
 
 type Props = {
-    title: string;
+    title?: string;
     subTitle?: string;
 }
 

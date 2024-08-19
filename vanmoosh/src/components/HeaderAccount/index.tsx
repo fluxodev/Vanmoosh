@@ -5,7 +5,6 @@ import { Container, Icon, Title } from "./style";
 import { MaterialIcons } from '@expo/vector-icons'
 
 type Props = {
-    icon: keyof typeof MaterialIcons.glyphMap;
     title: string;
   }
 
