@@ -9,6 +9,9 @@ import { DriverRoutes } from './Routes_Driver/app.routes';
 import { useContext } from 'react';
 import { authContext } from '@contexts/AuthContext';
 import { useAuth } from '@hooks/useAuth';
+import { useEffect } from 'react';
+
+import { getUser } from '@storage/auth/storageUser';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -24,10 +27,24 @@ export default function Routes() {
     const themeNavigator = DefaultTheme;
     themeNavigator.colors.background = COLORS.WHITE;
     
+    useEffect(() => {
+        async function checkUser() {
+          const user = await getUser();
+          if (user) {
+            // Usuário está logado, você pode redirecionar para a tela principal
+            console.log('Usuário logado:', user);
+          } else {
+            // Usuário não está logado, redirecionar para a tela de login
+            console.log('Nenhum usuário logado');
+          }
+        }
+      
+        checkUser();
+      }, []);
     return (
         <NavigationContainer theme={themeNavigator}>
 
-            {!user.email ? <SchoolRoutes/> :  <AuthRoutes />}
+            {user.email ? <SchoolRoutes/> :  <AuthRoutes />}
 
         </NavigationContainer>
     )
