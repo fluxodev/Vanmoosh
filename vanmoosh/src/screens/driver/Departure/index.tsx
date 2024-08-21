@@ -3,10 +3,12 @@ import HeaderDeparture from "@components/HeaderDeparture"
 import PlacaInput from "@components/PlacaInput"
 import { ButtonAdd } from "@components/Button"
 import { useState } from "react"
+import { DriverNavigatorRoutesProps } from "@routes/Routes_Driver/app.routes"
+import { useNavigation } from "@react-navigation/native"
 
 export function Departure() {
 
-  const [placa, setPlaca] = useState('')
+  const navigation = useNavigation<DriverNavigatorRoutesProps>()
 
   return (
 
@@ -19,7 +21,7 @@ export function Departure() {
         <PlacaInput
         editable={false}
         />
-        <ButtonAdd title="Registrar Início" />
+        <ButtonAdd title="Registrar Início" onPress={() => navigation.navigate('StartRoute')}/>
     </Container>
 
   )
