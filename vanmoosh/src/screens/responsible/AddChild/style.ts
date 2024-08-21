@@ -10,10 +10,11 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const Body = styled.View`
-    margin-top: 0;
-    position: fixed;
+    margin-top: -70;
+    align-items: center;
+    justify-content: space-around;
 `;
 
 export const PositionButton = styled.View`
-    margin-top: 300;
+    margin-top: 210;
 `;

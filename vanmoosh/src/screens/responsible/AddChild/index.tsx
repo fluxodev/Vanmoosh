@@ -37,21 +37,30 @@ export function AddChild(){
                     returnKeyType="done"
                     autoCorrect= {false}
                 />
-            </Body>
 
-            <PositionButton>
-                <ButtonAdd title="Registrar"
-                    onPress={() => Alert.alert(
-                                'Adicionar um filho',
-                                'Deseja adicionar um filho(a)?',
-                                [
-                                    {text:'Não'},
-                                    {text: 'Sim', onPress: () => {} }
-                                ]
+                <Input  
+                    placeholder="Código da Sala"
+                    returnKeyType="done"
+                    autoCorrect= {false}
+                />
 
-                            )}
+                <PositionButton>
+                    <ButtonAdd title="Registrar"
+                        onPress={() => Alert.alert(
+                                    'Adicionar um filho',
+                                    'Deseja adicionar um filho(a)?',
+                                    [
+                                        {text:'Não'},
+                                        {text: 'Sim', onPress: () => {} }
+                                    ]
+
+                                )}
                 />
             </PositionButton>
+
+            </Body>
+
+           
         </Container>
 
     );
