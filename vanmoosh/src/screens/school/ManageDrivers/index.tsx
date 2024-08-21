@@ -11,6 +11,14 @@ import { useState } from "react";
 
 import { Text } from 'react-native'
 import React from 'react'
+import { registerDriver } from "@libs/firebase/db/driver/registerDriver";
+
+const alunos = ["Davi", "Giovanni", "Matheus", "Peter Grifin"]
+const email = "email@irado.com"
+const senha = "rabiola"
+const idMotorista = "68"
+const idSchool = "2"
+
 
 export function ManageDriver() {
     const [drivers, setDrivers] = useState<string[]>(['Teste']);
@@ -44,8 +52,8 @@ export function ManageDriver() {
       <ButtonAdd
         title="Adicionar Motorista"
         type='primary'
-        onPress={() => console.log('Teste')
-        }
+        onPress={() => console.log("Teste")}
+        // registerDriver(alunos, email, idMotorista, idSchool, senha)
       />
     </Container>
   )
