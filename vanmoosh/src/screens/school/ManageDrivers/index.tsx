@@ -11,13 +11,25 @@ import { useState } from "react";
 
 import { Text } from 'react-native'
 import React from 'react'
-import { registerDriver } from "@libs/firebase/db/driver/registerDriver";
+import { addDriver } from "@libs/firebase/db/drivers/addDriver";
 
-const alunos = ["Davi", "Giovanni", "Matheus", "Peter Grifin"]
-const email = "email@irado.com"
-const senha = "rabiola"
-const idMotorista = "68"
-const idSchool = "2"
+// essas 3 constantes aqui vão receber os dados de data de nascimento do usuário, eu coloquei desse jeito improvisado
+// até existir uma tela de cadastro do motorista
+const birthYear = "2006"
+const birhtMonth = "10"
+const birthDay = "21"
+
+// essas constantes também irão receber dados do usuário, estão assim provisóriamente
+const idDriver = "01234"
+const adress = "Rua dos sequelados 72"
+const birthdayDate = new Date(`${birthYear}-${birhtMonth}-${birthDay}`)
+const cep = "12345678"
+const email = "serjao@gmail.com"
+const modeloVan = "Dragster Ford Transit Supervan 3"
+const name = "Serjao Berranteiro Matador de Onça"
+const placaVeicular = "abc1234"
+const telefone = "19999999998"
+const senha = "rabiola123"
 
 
 export function ManageDriver() {
@@ -52,8 +64,8 @@ export function ManageDriver() {
       <ButtonAdd
         title="Adicionar Motorista"
         type='primary'
-        onPress={() => console.log("Teste")}
-        // registerDriver(alunos, email, idMotorista, idSchool, senha)
+        onPress={() => addDriver(adress, birthdayDate, cep, email, modeloVan, name, placaVeicular, senha, telefone)}
+        // addDriver(..., ..., ...)
       />
     </Container>
   )
