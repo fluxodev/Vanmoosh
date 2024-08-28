@@ -28,6 +28,6 @@ export const BackButton = styled.TouchableOpacity`
 export const Logo = styled.Image`
     width: 46px;
     height: 55px;
-    left: 50%;
+    left: 25%;
 
     `;

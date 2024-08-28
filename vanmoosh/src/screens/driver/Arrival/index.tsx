@@ -1,4 +1,4 @@
-import { Container } from "./style"
+import { Container, MarginBetweenButtons } from "./style"
 import HeaderDeparture from "@components/HeaderDeparture"
 import PlacaInput from "@components/PlacaInput"
 import { ButtonAdd } from "@components/Button"
@@ -7,14 +7,16 @@ import { DriverNavigatorRoutesProps } from "@routes/Routes_Driver/app.routes"
 import { useNavigation } from "@react-navigation/native"
 import { Alert } from "react-native"
 import { createHistoricLog } from "@libs/firebase/db/Driver/historic"
+import { ButtonIcon } from "@components/ButtonIcon"
+import { Highlight } from "@components/Highlight"
 
-export function Departure() {
+export function Arrival() {
 
   const [isRegistered, setIsRegistered] = useState(false)
 
   const navigation = useNavigation<DriverNavigatorRoutesProps>()
 
-  async function handleDeparture(){
+  async function handleArrival(){
     try {
 
       setIsRegistered(true)
@@ -24,7 +26,7 @@ export function Departure() {
       
     } catch (error) {
       console.log("Erro: > ", error);
-      Alert.alert("Erro", 'Não foi possivel registrar o início da viagem.')
+      Alert.alert("Erro", 'Não foi possivel registrar o fim da viagem.')
       setIsRegistered(false)
     }
   }
@@ -34,13 +36,17 @@ export function Departure() {
 
     
     <Container>
-        <HeaderDeparture title="Início">
+        <HeaderDeparture title="Chegada">
         </HeaderDeparture>
         
         <PlacaInput
         editable={false}
         />
-        <ButtonAdd title="Registrar Início" onPress={handleDeparture}/>
+       
+        <ButtonAdd title="Registrar Chegada" onPress={handleArrival}/>
+        <MarginBetweenButtons></MarginBetweenButtons>
+        <Highlight title="Deseja retornar?" subTitle="Aperte o botão abaixo e retorne sem cancelar sua viagem."/>
+        <ButtonIcon icon="not-interested" type="primary" />
     </Container>
 
   )
