@@ -5,6 +5,7 @@ import theme from '@theme/index';
 import { SchoolRoutes } from './Routes_School/app.routes';
 import { AuthRoutes } from './Auth/app.routes';
 import { DriverRoutes } from './Routes_Driver/app.routes';
+
 import { Home_Responsible } from '@screens/responsible/Home';
 import Account_Responsible from '@screens/responsible/Account';
 
@@ -44,10 +45,8 @@ export default function Routes() {
         checkUser();
       }, []);
     return (
-        <NavigationContainer theme={themeNavigator}>
-        
+        <NavigationContainer theme={themeNavigator}>   
             {!user.email ? <DriverRoutes/> :  <AuthRoutes />}
-
         </NavigationContainer>
     )
 }
