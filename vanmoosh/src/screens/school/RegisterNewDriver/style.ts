@@ -9,12 +9,6 @@ export const Container = styled.SafeAreaView`
     
 `;
 
-export const Title = styled.View`
-    align-items: center;
-    justify-content: center;
-    background-color: ${({theme}) => theme.COLORS.WHITE};
-`;
-
 export const Body = styled.View`
     height: 600px;
     width: 90%;
@@ -22,5 +16,5 @@ export const Body = styled.View`
 `;
 
 export const Scroll = styled.ScrollView`
-    height: 600;
+    height: 600px;
 `;

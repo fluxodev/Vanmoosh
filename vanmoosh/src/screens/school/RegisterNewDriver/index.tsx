@@ -1,16 +1,15 @@
 import { Highlight } from "@components/Highlight";
-import { Container, Body, Scroll, Title } from "./style";
+import { Container, Body, Scroll } from "./style";
 import { TypesOfDataToBeFilledIn } from "@components/TypesOfDataToBeFilledin";
 import { Input } from "@components/Input";
 import { ButtonAdd } from "@components/Button";
+import { Header } from "@components/Header";
 
 export function RegisterNewDriver() {
 
     return (
         <Container>
-            <Title>
-                <Highlight title="Adicionar motorisa" />
-            </Title>
+            <Header showBackButton />
             <Body>
                 <Scroll>
                     <TypesOfDataToBeFilledIn title="Dados" />

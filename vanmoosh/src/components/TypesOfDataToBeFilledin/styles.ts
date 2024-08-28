@@ -17,8 +17,8 @@ export const Title = styled.Text`
 
 export const Line = styled.View`
     background-color: ${({theme}) => theme.COLORS.GRAY_200};
-    width: 400;
-    height: 1;
-    margin-left: -30;
-    margin-top: 5;
+    width: 400px;
+    height: 1px;
+    margin-left: -30px;
+    margin-top: 5px;
 `;
