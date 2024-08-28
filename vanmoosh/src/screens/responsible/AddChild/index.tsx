@@ -1,5 +1,5 @@
 import { Input } from "@components/Input";
-import { Body, Container, PositionButton } from "./style";
+import { Container, Box } from "./style";
 
 import HeaderDeparture from "@components/HeaderDeparture";
 import { Highlight } from "@components/Highlight";
@@ -12,9 +12,8 @@ export function AddChild(){
             <HeaderDeparture
                 title="Adicionar filho(a)"
             />
-
-            <Body>
                 <Highlight
+                    title="Filiação"
                     subTitle="Preencha o seguinte formulário com os dados de seu agregado "
                 />
 
@@ -43,23 +42,20 @@ export function AddChild(){
                     returnKeyType="done"
                     autoCorrect= {false}
                 />
+                <Box />
 
-                <PositionButton>
-                    <ButtonAdd title="Registrar"
-                        onPress={() => Alert.alert(
-                                    'Adicionar um filho',
-                                    'Deseja adicionar um filho(a)?',
-                                    [
-                                        {text:'Não'},
-                                        {text: 'Sim', onPress: () => {} }
-                                    ]
+            <ButtonAdd 
+            title="Registrar"
+            onPress={() => Alert.alert(
+            'Adicionar um filho',
+            'Deseja adicionar um filho(a)?',
+            [
+            {text:'Não'},
+            {text: 'Sim', onPress: () => {} }
+            ]
 
-                                )}
-                />
-            </PositionButton>
-
-            </Body>
-
+            )}
+            />
            
         </Container>
 

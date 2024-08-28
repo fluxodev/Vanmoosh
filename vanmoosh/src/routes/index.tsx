@@ -31,7 +31,7 @@ export default function Routes() {
         <NavigationContainer theme={themeNavigator}>
         
 
-             {!user.email ? <AddChild /> :  <AuthRoutes />} 
+             {!user.email ? <DriverRoutes /> :  <AuthRoutes />} 
 
         </NavigationContainer>
     )

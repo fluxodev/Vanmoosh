@@ -15,7 +15,7 @@ export const Container = styled.SafeAreaView`
     
     position: absolute;
     top: 50px;
-
+    
 
 `;
 
@@ -23,8 +23,6 @@ export const Title = styled.Text`
     color : ${({ theme }) => theme.COLORS.BRAND_MID};
     font-size: ${({ theme }) => theme.FONT_SIZE.XL}px;
     font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
-
-    margin-right: 120;
 
 `;
 
