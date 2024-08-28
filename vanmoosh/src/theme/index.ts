@@ -1,6 +1,7 @@
 export default {
   COLORS: {
     WHITE: '#FFFFFF',
+    BLACK: '#000000',
 
     BRAND_ULTRALIGHT: '#EAF0FF',
     BRAND_LIGHT: '#003E9A', // Azul principal
