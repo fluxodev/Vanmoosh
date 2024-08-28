@@ -29,7 +29,9 @@ type SchoolRoutesProps = {
     Groups: undefined;
     NewGroup: undefined;
     ManageDriver: undefined;
-    Students: undefined;
+    Students: {
+        group: string
+    };
 }
 
 export type SchoolNavigatorRoutesProps = BottomTabNavigationProp<SchoolRoutesProps>;

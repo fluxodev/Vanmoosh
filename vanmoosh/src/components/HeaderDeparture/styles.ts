@@ -29,5 +29,3 @@ export const Title = styled.Text`
 export const BackButton = styled.TouchableOpacity`
     right: -10px;
 `;
-
-

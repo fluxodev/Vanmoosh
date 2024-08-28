@@ -17,13 +17,13 @@ import { useRoute, useNavigation } from "@react-navigation/native";
 
 import { AppError } from "@utils/AppError";
 
-import { StudentAddByGroup } from "@storage/students/studentAddByGroup";
-import { StudentGetByGroup } from "@storage/students/studentsGetByGroup";
-import { StudentGetByGroupAndTeam } from "@storage/students/studentGetByGroupAndTeam";
-import { StudentStorageDTO } from "@storage/students/StudentStorageDTO";
+import { StudentAddByGroup } from "@libs/firebase/db/students/studentAddByGroup";
+import { getStudentsByGroup } from "@libs/firebase/db/students/studentsGetByGroup";
+import { StudentGetByGroup } from "@libs/firebase/db/students/studentGetByGroup";
+import { StudentStorageDTO } from "@utils/StudentStorageDTO";
 
-import { studentRemoveByGroup } from "@storage/students/studentRemoveByGroup";
-import { groupRemoveByName } from "@storage/groups/groupRemoveByName";
+import { studentRemoveByGroup } from "@libs/firebase/db/students/studentRemoveByGroup";
+import { groupRemoveByName } from "@libs/firebase/db/groups/removeGroup";
 import { Loading } from "@components/Loading";
 
 import { SchoolNavigatorRoutesProps } from "@routes/Routes_School/app.routes";
@@ -41,7 +41,7 @@ export default function Students() {
     }
 
     const route = useRoute(); // ele pega as informações da rota
-    const { group } = route.params as RouteParams; // ele pega o parametro que foi passado na rota
+    const { group } = route.params as { group: string }; // ele pega o parametro que foi passado na rota
     console.log(group);
     
 
@@ -83,7 +83,7 @@ export default function Students() {
         try {
             setIsLoading(true);
 
-            const studentsByGroup = await StudentGetByGroupAndTeam(group, selectTeam);
+            const studentsByGroup = await getStudentsByGroup(group);
 
             setStudents(studentsByGroup);
         } catch (error) {
