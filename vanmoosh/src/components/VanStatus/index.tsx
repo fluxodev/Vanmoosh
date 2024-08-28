@@ -5,12 +5,13 @@ import { TouchableOpacityProps } from "react-native"
 
 type Props = TouchableOpacityProps & {
     placa?: string | null;
+    inTrip?: boolean;
 }
 
-export function VanStatus({placa = null, ...rest}: Props) {
-    const status = placa ? 'chegada' : 'saída'
-    const Icone = placa ? WarningDiamond : Van
-    const mensagem = placa ? `Van de placa ${placa} em uso! ` : `Van de placa ${placa} fora de uso `
+export function VanStatus({placa = null, inTrip , ...rest}: Props) {
+    const status = inTrip ? 'chegada' : 'saída'
+    const Icone = inTrip ? WarningDiamond : Van
+    const mensagem = inTrip ? `Van de placa ${placa} em uso! ` : `Van de placa ${placa} fora de uso `
     
 
     const { COLORS } = theme

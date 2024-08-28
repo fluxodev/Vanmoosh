@@ -1,6 +1,9 @@
 import { Container, TextSup, Placa } from './styles'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { getDriverPlate } from '@libs/firebase/db/Driver/getPlate'
 import { TextInputProps } from 'react-native'
+
+
 
 type Props = TextInputProps & {
 
@@ -10,8 +13,20 @@ type Props = TextInputProps & {
 
 export default function PlacaInput({...rest}: Props) {
 
-  const [placa, setPlaca] = useState('')
+  const [plate, setPlate] = useState<string | null>(null);
 
+  useEffect(() => {
+    const fetchPlate = async () => {
+      try {
+        const plate = await getDriverPlate();
+        setPlate(plate);
+      } catch (error) {
+        console.error("Erro ao obter a placa do motorista:", error);
+      }
+    };
+
+    fetchPlate();
+  }, []);
 
 
   return (
@@ -25,7 +40,7 @@ export default function PlacaInput({...rest}: Props) {
         maxLength={7}
         {...rest}
         >
-            ISA2C13
+            {plate}
         </Placa>
     </Container>
   )

@@ -5,13 +5,15 @@ import theme from '@theme/index';
 import { SchoolRoutes } from './Routes_School/app.routes';
 import { AuthRoutes } from './Auth/app.routes';
 import { DriverRoutes } from './Routes_Driver/app.routes';
-import { RegisterNewDriver } from '@screens/school/RegisterNewDriver';
+
+import { Home_Responsible } from '@screens/responsible/Home';
+import Account_Responsible from '@screens/responsible/Account';
 
 import { useContext } from 'react';
 import { authContext } from '@contexts/AuthContext';
 import { useAuth } from '@hooks/useAuth';
-import { useEffect } from 'react';
 
+import { useEffect } from 'react';
 import { getUser } from '@storage/auth/storageUser';
 
 const { Navigator, Screen } = createNativeStackNavigator();
@@ -43,10 +45,8 @@ export default function Routes() {
         checkUser();
       }, []);
     return (
-        <NavigationContainer theme={themeNavigator}>
-
-            {!user.email ? <RegisterNewDriver/> :  <AuthRoutes />}
-
+        <NavigationContainer theme={themeNavigator}>   
+            {!user.email ? <DriverRoutes/> :  <AuthRoutes />}
         </NavigationContainer>
     )
 }
