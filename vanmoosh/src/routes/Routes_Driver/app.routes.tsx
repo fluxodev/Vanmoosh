@@ -33,7 +33,9 @@ type DriverRoutesProps = {
     Account_Driver: undefined;
 
     Departure: undefined;
-    Arrival: undefined;
+    Arrival: {
+        id: string,
+    };
     StartRoute: undefined;
 }
 
