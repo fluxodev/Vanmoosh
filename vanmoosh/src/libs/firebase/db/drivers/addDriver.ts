@@ -27,7 +27,22 @@ export const addDriver = async (adress : string, birthdayDate : Date, cep : stri
             telefone: telefone
         }
 
+        const motoristaUserDocRef = doc(db, 'users', idDriver);
+        const updatedMotoUser = {
+            idDriver: idDriver,
+            name: name,
+            email: email,
+            senha: senha,
+            telefone: telefone,
+            birthdayDate: birthdayDate,
+            adress: adress,
+            cep: cep,
+            role: "Driver"
+
+        }
+
         await setDoc(motoristaDocRef, updatedDriver, { merge: true });
+        await setDoc(motoristaUserDocRef, updatedMotoUser, { merge: true });
         console.log("Motorista adicionado com sucesso!");
     } catch (error) {
         console.error("Erro ao criar o motorista: ", error);

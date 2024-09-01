@@ -36,8 +36,7 @@ export function ManageDriver() {
     const [drivers, setDrivers] = useState<string[]>(['Teste']);
 
     function handleOpenDriver() {
-        console.log('Abrir motorista');
-        
+        console.log('Abrir motorista');  
     }
 
 
