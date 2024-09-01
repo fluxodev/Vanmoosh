@@ -9,23 +9,38 @@ type Props = {
 }
 
 export const Container = styled(TouchableOpacity)`
-  width: 110px;
-  height: 100px;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  height: 80px;
+  margin-left: 20;
   border-radius: 20px;
-  background-color: ${({ theme }) => theme.COLORS.WHITE_GRAY};
 `;
 
 export const Icon = styled(MaterialIcons).attrs<Props>(({ theme, type }) => ({
-  size: 24,
-  color: type === 'primary' ? theme.COLORS.BRAND_MID : theme.COLORS.BRAND_ULTRALIGHT
+  size: 45,
+  color: type === 'primary' ? theme.COLORS.BRAND_MID : theme.COLORS.GRAY_100
 }))``;
 
 export const TitleButton = styled.Text`
+margin-top: -30;
+margin-left: 30;
     ${({ theme}) => css`
     
-    font-size: ${Platform.OS === 'android' ? theme.FONT_SIZE.MD  : theme.FONT_SIZE.MD}px;
+    font-size: ${Platform.OS === 'android' ? theme.FONT_SIZE.P  : theme.FONT_SIZE.MD}px;
     color: ${theme.COLORS.BRAND_LIGHT};
     font-family: ${theme.FONT_FAMILY.BOLD};
-    `}`;
+    padding: 0 24px;
+    
+
+`}`;
+
+export const Line = styled.View`
+  ${({ theme}) => css`
+    background-color: ${theme.COLORS.GRAY_100};
+  `}
+  margin-top: 15;
+  margin-left: -40;
+
+  width: 97%;
+  height: 1;
+ 
+`;

@@ -1,21 +1,36 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { User } from "users";
-import { USER_STORAGE } from "@storage/storageConfig";
 
+import app from '@libs/firebase/config'
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-export async function saveUser(user: User) {
+const auth = getAuth(app)
+
+const USER_STORAGE = '@user_storage';
+
+// Função para salvar o usuário no AsyncStorage
+export async function saveUser() {
   try {
-    await AsyncStorage.setItem(USER_STORAGE, JSON.stringify(user));
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      await AsyncStorage.setItem(USER_STORAGE, JSON.stringify(currentUser));
+
+      console.log('> Usuário salvo: ', currentUser);
+      
+    };
   } catch (error) {
     console.log(error);
   }
 }
 
 export async function getUser() {
-  const storage = await AsyncStorage.getItem(USER_STORAGE);
+  try {
+    const storage = await AsyncStorage.getItem(USER_STORAGE);
+    const user = storage ? JSON.parse(storage) : null;
 
-  const user: User = storage ? JSON.parse(storage) : {};
-
-  return user;
+    return user;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 }
-

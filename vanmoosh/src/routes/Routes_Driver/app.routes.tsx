@@ -12,6 +12,7 @@ import { Chat_Driver } from '@screens/driver/Chat';
 import { Account_Driver } from '@screens/driver/Account';
 import { Departure } from '@screens/driver/Departure';
 import { StartRoute } from '@screens/driver/StartRoute';
+import { Arrival } from '@screens/driver/Arrival';
 
 //-------------------------------------//----------------------------------//
 
@@ -32,6 +33,9 @@ type DriverRoutesProps = {
     Account_Driver: undefined;
 
     Departure: undefined;
+    Arrival: {
+        id: string,
+    };
     StartRoute: undefined;
 }
 
@@ -133,6 +137,14 @@ export function DriverRoutes() {
             <Screen 
             name='Departure'
             component={Departure}
+            options={{
+                tabBarButton: () => null,
+                tabBarStyle: {display: 'none'},
+            }}
+            />
+            <Screen 
+            name='Arrival'
+            component={Arrival}
             options={{
                 tabBarButton: () => null,
                 tabBarStyle: {display: 'none'},

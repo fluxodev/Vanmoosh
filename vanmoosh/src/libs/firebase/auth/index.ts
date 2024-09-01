@@ -10,6 +10,8 @@ import {
 import { getFirestore, doc, setDoc, DocumentReference } from "firebase/firestore";
 import firebaseInstance from "../config";
 
+import { saveUser } from "@storage/auth/storageUser";
+
 // Interfaces para tipagem de retorno
 interface RegisterUserSuccess {
   userDocRef: DocumentReference<User>;
@@ -38,10 +40,7 @@ export const registerUser = async (user: User, password: string) => {
     const userDocRef = await doc(db, "users", t);
     const updatedUser: User = {...user, createdAt: new Date().toISOString()};
     await setDoc(doc(db, "users", t), updatedUser);
-
-    console.log(userCredential);
     
-
      return { userDocRef, userCredential };
       ;
     
@@ -67,6 +66,7 @@ export const registerUser = async (user: User, password: string) => {
 export const signInWithEmail = async (email: string, password: string): Promise<AuthError | null> => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
+
     return null;
   } catch (error) {
     // Tipagem explícita do erro como AuthError

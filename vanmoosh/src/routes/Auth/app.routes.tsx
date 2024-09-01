@@ -27,7 +27,7 @@ const { Navigator, Screen } = createNativeStackNavigator<AuthRoutes>();
 export function AuthRoutes() {
     return(
         <Navigator
-            initialRouteName='SignUp'
+            initialRouteName='Main'
             screenOptions={{
                 headerShown: false,
                 gestureEnabled: false,
