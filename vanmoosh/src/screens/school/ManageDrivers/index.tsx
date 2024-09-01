@@ -65,7 +65,9 @@ export function ManageDriver() {
         type='primary'
         onPress={() => addDriver(adress, birthdayDate, cep, email, modeloVan, name, placaVeicular, senha, telefone)}
         // addDriver(..., ..., ...)
+        // teste irado
       />
+
     </Container>
   )
 }
