@@ -12,6 +12,8 @@ import { useState } from "react";
 import { Text } from 'react-native'
 import React from 'react'
 import { addDriver } from "@libs/firebase/db/drivers/addDriver";
+import { useNavigation } from "@react-navigation/native";
+import { SchoolNavigatorRoutesProps } from "@routes/Routes_School/app.routes";
 
 // essas 3 constantes aqui vão receber os dados de data de nascimento do usuário, eu coloquei desse jeito improvisado
 // até existir uma tela de cadastro do motorista
@@ -33,10 +35,11 @@ const senha = "rabiola123"
 
 
 export function ManageDriver() {
+    const navigation = useNavigation<SchoolNavigatorRoutesProps>()
     const [drivers, setDrivers] = useState<string[]>(['Teste']);
 
     function handleOpenDriver() {
-        console.log('Abrir motorista');  
+      navigation.navigate('RegisterNewDriver')
     }
 
 
@@ -63,9 +66,7 @@ export function ManageDriver() {
       <ButtonAdd
         title="Adicionar Motorista"
         type='primary'
-        onPress={() => addDriver(adress, birthdayDate, cep, email, modeloVan, name, placaVeicular, senha, telefone)}
-        // addDriver(..., ..., ...)
-        // teste irado
+        onPress={handleOpenDriver}
       />
 
     </Container>

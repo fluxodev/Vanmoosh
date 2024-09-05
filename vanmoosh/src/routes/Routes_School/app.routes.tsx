@@ -15,6 +15,7 @@ import Groups from '@screens/school/Groups';
 import Students from '@screens/school/Students';
 import NewGroup from '@screens/school/NewGroup';
 import { ManageDriver } from '@screens/school/ManageDrivers';
+import { RegisterNewDriver } from '@screens/school/RegisterNewDriver';
 
 //-------------------------------------//----------------------------------//
 
@@ -32,6 +33,7 @@ type SchoolRoutesProps = {
     Students: {
         group: string
     };
+    RegisterNewDriver: undefined;
 }
 
 export type SchoolNavigatorRoutesProps = BottomTabNavigationProp<SchoolRoutesProps>;
@@ -164,6 +166,14 @@ export function SchoolRoutes() {
             <Screen 
             name='ManageDriver'
             component={ManageDriver}
+            options={{
+                tabBarButton: () => null,
+                tabBarStyle: {display: 'none'},
+            }}
+            />
+            <Screen 
+            name='RegisterNewDriver'
+            component={RegisterNewDriver}
             options={{
                 tabBarButton: () => null,
                 tabBarStyle: {display: 'none'},
