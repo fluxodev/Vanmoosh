@@ -26,14 +26,22 @@ import { studentRemoveByGroup } from "@libs/firebase/db/students/studentRemoveBy
 import { groupRemoveByName } from "@libs/firebase/db/groups/removeGroup";
 import { Loading } from "@components/Loading";
 
+import app from '@libs/firebase/config'
+
 import { SchoolNavigatorRoutesProps } from "@routes/Routes_School/app.routes";
+import { getFirestore, query, getDocs, where, collection } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 export default function Students() {
+
+    const db = getFirestore(app)
+    const auth = getAuth(app)
 
     const [isLoading, setIsLoading] = useState(true);
     const [selectTeam, setSelectTeam] = useState('Todos');
     const [students, setStudents] = useState<StudentStorageDTO[]>([]);
     const [newStudent, setNewStudent] = useState('');
+    const [groupCode, setGroupCode] = useState('');
     const navigation = useNavigation<SchoolNavigatorRoutesProps>();
 
     type RouteParams = {
@@ -144,8 +152,41 @@ export default function Students() {
 
     }
 
+    async function fetchGroupCode() {
+        try {
+            const idSchool = auth.currentUser?.uid;
+            if (!idSchool) {
+                throw new Error('Usuário não autenticado.');
+            }
+
+            console.log('ID da Escola:', idSchool);
+
+            // Busca o documento do grupo pelo nome do grupo
+            const q = query(collection(db, 'groups'), where('name', '==', group));
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                const groupDoc = querySnapshot.docs[0];
+                const groupData = groupDoc.data();
+                console.log('Dados do Grupo:', groupData);
+
+                if (groupData.idSchool === idSchool) {
+                    setGroupCode(groupData.codigo);
+                } else {
+                    throw new Error('Usuário não autorizado a acessar este grupo.');
+                }
+            } else {
+                throw new Error('Grupo não encontrado.');
+            }
+        } catch (error) {
+            console.error('Erro ao recuperar o código do grupo: ', error);
+            Alert.alert('Erro');
+        }
+    }
+
     useEffect(() => {
         fetchStudentsByTeam();
+        fetchGroupCode();
     }, [selectTeam]);
 
     return (
@@ -155,7 +196,7 @@ export default function Students() {
 
             <Highlight
                 title={group}
-                subTitle="Gerencie os alunos desta turma."
+                subTitle={`Código da turma: ${groupCode}`}
             />
 
             <Form>
