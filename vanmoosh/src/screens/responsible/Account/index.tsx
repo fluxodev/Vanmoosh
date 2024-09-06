@@ -6,16 +6,22 @@ import { Container } from './style'
 import { AddChild } from '../AddChild'
 
 import { OptionsCard } from '@components/OptionsCard'
-import { HeaderAccount } from '@components/HeaderAccount'
+import { HeaderSettings } from '@components/SettingsHeaderSchool'
 
-export default function Account_Responsible() {
+
+export function Account_Responsible() {
+
+  const navigation = useNavigation()
+
+  function handleOnAddChild() {
+
+    
+
+  }
 
   return (
     <Container>
-        <HeaderAccount
-            title='Nome e Sobrenome'
-            
-        />
+        <HeaderSettings />
 
       <OptionsCard title='Configuração' />
       <OptionsCard title='Editar Informações'/>

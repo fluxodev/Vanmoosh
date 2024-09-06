@@ -5,12 +5,22 @@ import HeaderDeparture from "@components/HeaderDeparture";
 import { Highlight } from "@components/Highlight";
 import { ButtonAdd } from "@components/Button";
 import { Alert } from "react-native";
+import { addStudentToGroup } from "@libs/firebase/db/students/includeStudentInTheGroup";
 
 export function AddChild(){
+
+    async function handleOnButton() {
+
+        const groupCode = '645180'
+        await addStudentToGroup(groupCode)
+        
+    }
+
     return (
         <Container>
             <HeaderDeparture
                 title="Adicionar filho(a)"
+                
             />
                 <Highlight
                     title="Filiação"
@@ -51,7 +61,7 @@ export function AddChild(){
             'Deseja adicionar um filho(a)?',
             [
             {text:'Não'},
-            {text: 'Sim', onPress: () => {} }
+            {text: 'Sim', onPress: () => handleOnButton() }
             ]
 
             )}
