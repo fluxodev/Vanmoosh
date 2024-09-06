@@ -78,7 +78,9 @@ import {
         address: address,
       };
 
-       await registerCommomUser(newUserData);
+      await registerCommomUser(newUserData);
+
+       navigation.goBack()
 
     }
   
@@ -166,7 +168,6 @@ import {
                 <Input
                   placeholder="CEP"
                   returnKeyType="send"
-                  secureTextEntry={true}
                   onChangeText={onChange}
                   value={value}
   

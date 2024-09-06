@@ -6,7 +6,7 @@ export const Container = styled(TextInput)`
 ${({ theme }) => css`
     flex: 1;
 
-    min-width: 85%;
+    min-width: 70%;
     
     min-height: 56px;
     max-height: 56px;
@@ -19,10 +19,8 @@ ${({ theme }) => css`
 
     border-radius: 6px;
     border-color: ${theme.COLORS.BRAND_LIGHT};
-    border-width: 1;
-
-    margin-top: 4%;
-
+    border-width: 1px;
+    
     padding: 16px;
 `}
 `;

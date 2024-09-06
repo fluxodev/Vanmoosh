@@ -7,7 +7,7 @@ import { Highlight } from "@components/Highlight";
 
 
 
-export function HeaderSettingsSchools(){
+export function HeaderSettings(){
 
     const navigation = useNavigation();
 

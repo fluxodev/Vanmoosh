@@ -37,8 +37,6 @@ export const registerUser = async (user: User, password: string) => {
 
     const t = userCredential.user.uid;
 
-    
-
     const userDocRef = await doc(db, "users", t);
     const updatedUser: User = {...user, createdAt: new Date().toISOString()};
     await setDoc(doc(db, "users", t), updatedUser);
