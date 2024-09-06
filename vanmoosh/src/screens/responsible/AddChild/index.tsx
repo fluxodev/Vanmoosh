@@ -22,11 +22,17 @@ export function AddChild(){
     async function handleOnButton() {
         try {
             const result = await addChild({name, birthdayDate, adress, cpf, anoEscolar})
-            if (!result) {
+            console.log(result);
+            
+            if (result !== true) {
                 console.log("Erro: usuário não cadastrado")
                 return
             }
-            await addStudentToGroup(groupCode)
+
+            console.log('Cheguei aqui');
+            
+
+            await addStudentToGroup(groupCode, name)
         } catch (error) {
             console.error("Erro ao registrar: ", error)
         }

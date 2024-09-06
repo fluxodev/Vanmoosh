@@ -11,7 +11,7 @@ type Props = {
 export const Container = styled(TouchableOpacity)`
   width: 100%;
   height: 80px;
-  margin-left: 20;
+  margin-left: 20px;
   border-radius: 20px;
 `;
 
@@ -21,8 +21,8 @@ export const Icon = styled(MaterialIcons).attrs<Props>(({ theme, type }) => ({
 }))``;
 
 export const TitleButton = styled.Text`
-margin-top: -30;
-margin-left: 30;
+margin-top: -30px;
+margin-left: 30px;
     ${({ theme}) => css`
     
     font-size: ${Platform.OS === 'android' ? theme.FONT_SIZE.P  : theme.FONT_SIZE.MD}px;
@@ -37,10 +37,10 @@ export const Line = styled.View`
   ${({ theme}) => css`
     background-color: ${theme.COLORS.GRAY_100};
   `}
-  margin-top: 15;
-  margin-left: -40;
+  margin-top: 15px;
+  margin-left: -40px;
 
   width: 97%;
-  height: 1;
+  height: 1px;
  
 `;

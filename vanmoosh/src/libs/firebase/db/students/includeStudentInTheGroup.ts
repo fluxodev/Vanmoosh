@@ -7,7 +7,7 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 
 // Função para adicionar aluno ao grupo
-export const addStudentToGroup = async (groupCode: string) => {
+export const addStudentToGroup = async (groupCode: string, alunoNome: string): Promise<void> => {
   try {
     // Obter usuário atual
     const currentUser = auth.currentUser;
@@ -19,21 +19,7 @@ export const addStudentToGroup = async (groupCode: string) => {
       throw new Error('Usuário não autenticado');
     }
 
-    // Buscar aluno na coleção 'alunos' pelo ResponsibleId
-    const alunosQuery = query(collection(db, 'alunos'), where('responsibleId', '==', currentUser.uid));
-    const alunosSnapshot = await getDocs(alunosQuery);
-
-
-
-    if (alunosSnapshot.empty) {
-      throw new Error('Nenhum aluno encontrado para o usuário atual');
-    }
-
-    // Guardar o nome do aluno
-    const aluno = alunosSnapshot.docs[0].data();
-    const alunoNome = aluno.nome;
-
-    console.log('Aluno encontrado:', alunoNome);
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     // Buscar grupo na coleção 'groups' pelo ID do documento
     const groupDocRef = doc(db, 'groups', groupCode);
@@ -41,6 +27,12 @@ export const addStudentToGroup = async (groupCode: string) => {
 
     if (!groupDoc.exists()) {
       throw new Error('Nenhum grupo encontrado com o código fornecido');
+    }
+
+    const groupData = groupDoc.data();
+    if (groupData.alunos && groupData.alunos.includes(alunoNome)) {
+      console.log(`Aluno ${alunoNome} já está no grupo ${groupCode}`);
+      return;
     }
 
     // Adicionar aluno ao grupo
