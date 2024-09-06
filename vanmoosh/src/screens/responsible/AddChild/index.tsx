@@ -10,7 +10,7 @@ import { addStudentToGroup } from "@libs/firebase/db/students/includeStudentInTh
 export function AddChild(){
 
     async function handleOnButton() {
-
+        
         const groupCode = '645180'
         await addStudentToGroup(groupCode)
         
