@@ -16,11 +16,13 @@
     "@react-navigation/bottom-tabs": "^6.6.1",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.10.0",
+    "axios": "^1.7.7",
     "dayjs": "^1.11.13",
     "expo": "51.0.23",
     "expo-file-system": "~17.0.1",
     "expo-font": "^12.0.9",
     "expo-image-picker": "~15.0.7",
+    "expo-location": "~17.0.1",
     "expo-status-bar": "~1.12.1",
     "firebase": "^10.12.3",
     "phosphor-react-native": "^2.0.0",
@@ -35,7 +37,8 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",
     "styled-components": "^6.1.11",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "react-native-maps": "1.14.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
