@@ -8,6 +8,7 @@ import { DriverRoutes } from './Routes_Driver/app.routes';
 
 import { Home_Responsible } from '@screens/responsible/Home';
 import Account_Responsible from '@screens/responsible/Account';
+import { SchoolRegister } from '@screens/auth/SchoolRegister';
 
 import { useContext } from 'react';
 import { authContext } from '@contexts/AuthContext';
@@ -46,7 +47,7 @@ export default function Routes() {
       }, []);
     return (
         <NavigationContainer theme={themeNavigator}>   
-            {!user.email ? <DriverRoutes/> :  <AuthRoutes />}
+            {!user.email ? <SchoolRegister/> :  <AuthRoutes />}
         </NavigationContainer>
     )
 }
