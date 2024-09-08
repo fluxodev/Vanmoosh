@@ -22,7 +22,6 @@ export function Home_Driver() {
       }
       
       function HandleOnRotas() {
-        console.log('Botão Rotas')
         navigation.navigate('StartRoute')
       }
         
