@@ -16,6 +16,7 @@ import { useAuth } from '@hooks/useAuth';
 
 import { useEffect } from 'react';
 import { getUser } from '@storage/auth/storageUser';
+import { SchoolData } from '@screens/auth/SchoolData';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -47,7 +48,7 @@ export default function Routes() {
       }, []);
     return (
         <NavigationContainer theme={themeNavigator}>   
-            {!user.email ? <SchoolRegister/> :  <AuthRoutes />}
+            {!user.email ? <SchoolData/> :  <AuthRoutes />}
         </NavigationContainer>
     )
 }
