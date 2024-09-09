@@ -15,6 +15,7 @@ import { ResponsibleRoutes } from './Routes_Responsible/app.routes';
 
 import { useEffect } from 'react';
 import { getUser } from '@storage/auth/storageUser';
+import { MainScreen } from '@screens/auth/MainScreen';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -46,7 +47,7 @@ export default function Routes() {
       }, []);
     return (
         <NavigationContainer theme={themeNavigator}>   
-            {user.email ? <DriverRoutes /> :  <AuthRoutes />}
+            {user.email ? <MainScreen /> :  <AuthRoutes />}
         </NavigationContainer>
     )
 }
