@@ -13,12 +13,17 @@ import { useRoute } from "@react-navigation/native"
 import { updateHistoricLog } from "@libs/firebase/db/Driver/historic"
 import { checkOpenTrip } from "@libs/firebase/db/Driver/checkTrip"
 import { stopLocTask } from "src/tasks/backgroundLocationTask"
+import { getStorageLocations } from "@storage/Location/StorageLocation"
+import { LatLng } from "react-native-maps"
+import { ViewMap } from "@components/MapView"
+import { updateTripCoord } from "@libs/firebase/db/Driver/updateTripCoords"
 
 type RouteParamsProps = {
   id: string
 }
 
 export function Arrival() {
+  const [coords, setCoords] = useState<LatLng[]>([]);
   const route = useRoute()
   const { id } = route.params as RouteParamsProps;
 
@@ -27,26 +32,6 @@ export function Arrival() {
   const [isRegistered, setIsRegistered] = useState(false)
 
   const navigation = useNavigation<DriverNavigatorRoutesProps>()
-
-  async function handleArrival(){
-    try {
-
-      setIsRegistered(true)
-
-      const result = await updateHistoricLog(id)
-
-      console.log(`Histórico de ID ${id} alterado para o status: ${result.status}`);
-      
-      navigation.goBack()
-
-      await stopLocTask()
-      
-    } catch (error) {
-      console.log("Erro: > ", error);
-      Alert.alert("Erro", 'Não foi possivel registrar o fim da viagem.')
-      setIsRegistered(false)
-    }
-  }
 
   function handleRemoveVehicleUsage() {
     Alert.alert(
@@ -67,6 +52,44 @@ export function Arrival() {
     navigation.goBack()
   }
 
+  async function getLocationsInfo() {
+    try {
+      const log = await getStorageLocations()
+      setCoords(log)
+      
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function handleArrival(){
+    try {
+
+      setIsRegistered(true)
+
+      const result = await updateHistoricLog(id)
+
+      console.log(`Histórico de ID ${id} alterado para o status: ${result.status}`);
+      
+      navigation.goBack()
+      
+      const coordenates = await getStorageLocations()
+      console.log('Coordenadas', coordenates);
+      
+      
+      await updateTripCoord({coordenates, id})
+
+      await stopLocTask()
+      
+    } catch (error) {
+      console.log("Erro: > ", error);
+      Alert.alert("Erro", 'Não foi possivel registrar o fim da viagem.')
+      setIsRegistered(false)
+    }
+  }
+  useEffect(() => {
+    getLocationsInfo()
+  }, [])
   return (
 
 
@@ -75,9 +98,9 @@ export function Arrival() {
         <HeaderDeparture title="Chegada">
         </HeaderDeparture>
         
-        <PlacaInput
-        editable={false}
-        />
+        {coords.length > 0 && 
+        <ViewMap coords={coords}/>
+        }
        
         <ButtonAdd title="Registrar Chegada" onPress={handleArrival}/>
         <MarginBetweenButtons></MarginBetweenButtons>

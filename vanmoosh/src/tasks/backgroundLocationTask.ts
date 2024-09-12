@@ -1,4 +1,4 @@
-import { saveStorageLocation } from '@storage/Location/StorageLocation';
+import { removeLocationsStorage, saveStorageLocation } from '@storage/Location/StorageLocation';
 import { Accuracy, hasStartedLocationUpdatesAsync, startLocationUpdatesAsync, stopLocationUpdatesAsync } from 'expo-location';
 import * as taskM from 'expo-task-manager';
 
@@ -33,9 +33,6 @@ taskM.defineTask(TASK_NAME_BACKGROUND, async ({data, error}: any) => {
 export async function startLocTask(){
     try {
 
-        console.log('Cheguei aqui');
-        
-
         const hasStarted = await hasStartedLocationUpdatesAsync(TASK_NAME_BACKGROUND);
 
         if(hasStarted) {
@@ -59,11 +56,13 @@ export async function stopLocTask(){
 
         if(hasStarted) {
            await stopLocationUpdatesAsync(TASK_NAME_BACKGROUND);
+           await removeLocationsStorage();
         }
 
 
 
     } catch (error) {
+        console.error(error);
         
     }
 }

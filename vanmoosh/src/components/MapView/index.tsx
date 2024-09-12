@@ -29,8 +29,8 @@ export function ViewMap({coords, ...rest}: Props){
     region={{
         latitude: ultCoord.latitude,
         longitude: ultCoord.longitude,
-        latitudeDelta: 0.001,
-        longitudeDelta: 0.001,
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005,
     }}
     onMapLoaded={MapLoad}
     {...rest}
