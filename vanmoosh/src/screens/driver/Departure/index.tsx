@@ -8,7 +8,7 @@ import { useNavigation } from "@react-navigation/native"
 import { Alert } from "react-native"
 import { createHistoricLog } from "@libs/firebase/db/Driver/historic"
 import { useRoute } from "@react-navigation/native"
-import { useForegroundPermissions, watchPositionAsync, LocationAccuracy, LocationSubscription, LocationObjectCoords } from 'expo-location'
+import { useForegroundPermissions, watchPositionAsync, LocationAccuracy, LocationSubscription, LocationObjectCoords, requestBackgroundPermissionsAsync } from 'expo-location'
 
 import { getReverseGeolocation } from "@utils/getAdressLocation"
 import { Loading } from "@components/Loading"
@@ -16,6 +16,7 @@ import { InfoLocation } from "@components/LocationInfo"
 import { Van } from "phosphor-react-native"
 
 import { ViewMap } from "@components/MapView"
+import { startLocTask } from "src/tasks/backgroundLocationTask"
 
 type RouteParamsProps = {
   id: string
@@ -33,18 +34,32 @@ export function Departure() {
 
   const [ locationForegrounPermission, requestLocationForegrounPermission ] = useForegroundPermissions()
 
+
+
   const navigation = useNavigation<DriverNavigatorRoutesProps>()
 
   async function handleDeparture(){
     try {
       
       setIsRegistered(true)
-      const log = await createHistoricLog();
-      console.log(`Histórico de ID ${id} alterado para o status: ${log.status}`);
+      
+
+      const backgrounPermissions = await requestBackgroundPermissionsAsync()
+      console.log(backgrounPermissions);
+      
+      if(!backgrounPermissions.granted){
+        setIsRegistered(false)
+        return Alert.alert('Localização', 'É necessário permitir a localização em segundo plano.')
+      }
 
       if(!coordsCurrent?.latitude && !coordsCurrent?.longitude){
         return Alert.alert('Localização', 'Não foi possível obter a localização atual. Tente novamente!')
       }
+
+      const log = await createHistoricLog();
+      console.log(`Histórico de ID ${id} alterado para o status: ${log.status}`);
+      await startLocTask();
+
       
       navigation.goBack()
       
@@ -52,6 +67,7 @@ export function Departure() {
       console.log("Erro: > ", error);
       Alert.alert("Erro", 'Não foi possivel registrar o início da viagem.')
       setIsRegistered(false)
+      return
     }
   }
 
@@ -119,10 +135,6 @@ export function Departure() {
         </HeaderDeparture>
 
 
-        
-        <PlacaInput
-        editable={false}
-        />
         {coordsCurrent && 
         <ViewMap
         coords={[

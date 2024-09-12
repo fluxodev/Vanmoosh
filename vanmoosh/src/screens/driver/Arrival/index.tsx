@@ -2,7 +2,7 @@ import { Container, MarginBetweenButtons } from "./style"
 import HeaderDeparture from "@components/HeaderDeparture"
 import PlacaInput from "@components/PlacaInput"
 import { ButtonAdd } from "@components/Button"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { DriverNavigatorRoutesProps } from "@routes/Routes_Driver/app.routes"
 import { useNavigation } from "@react-navigation/native"
 import { Alert } from "react-native"
@@ -11,6 +11,8 @@ import { ButtonIcon } from "@components/ButtonIcon"
 import { Highlight } from "@components/Highlight"
 import { useRoute } from "@react-navigation/native"
 import { updateHistoricLog } from "@libs/firebase/db/Driver/historic"
+import { checkOpenTrip } from "@libs/firebase/db/Driver/checkTrip"
+import { stopLocTask } from "src/tasks/backgroundLocationTask"
 
 type RouteParamsProps = {
   id: string
@@ -36,6 +38,8 @@ export function Arrival() {
       console.log(`Histórico de ID ${id} alterado para o status: ${result.status}`);
       
       navigation.goBack()
+
+      await stopLocTask()
       
     } catch (error) {
       console.log("Erro: > ", error);

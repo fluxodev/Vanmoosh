@@ -3,6 +3,11 @@ import * as dotenv from 'react-native-dotenv'
 module.exports = {
   "expo": {
     "name": "vanmoosh",
+    "extra": {
+      "eas": {
+        "projectId": "a75da223-a163-4ce1-b8e7-22794c5206fa"
+      }
+    },
     "slug": "vanmoosh",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -23,6 +28,7 @@ module.exports = {
       }
     },
     "android": {
+      "package": "com.fluxodominio.vanmoosh",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -34,7 +40,9 @@ module.exports = {
         "permissions": [
           "ACCESS_FINE_LOCATION", 
           "ACCESS_COARSE_LOCATION",
-          "ACCESS_BACKGROUND_LOCATION"
+          "ACCESS_BACKGROUND_LOCATION",
+          "FOREGROUND_SERVICE",
+          "FOREGROUND_SERVICE_LOCATION"
         ],
       }
     },
@@ -54,7 +62,9 @@ module.exports = {
       [
         "expo-location",
         {
-          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location.",
+          "isAndroidBackgroundLocationEnabled": true,
+          "isAndroidForegroundServiceEnabled": true,
         }
       ]
     ]
