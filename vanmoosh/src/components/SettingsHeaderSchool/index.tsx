@@ -8,8 +8,6 @@ import { Highlight } from "@components/Highlight";
 import { fetchNameUser } from "@libs/firebase/db/fetchNameUser";
 import { useEffect, useState } from "react";
 
-
-
 export function HeaderSettings(){
 
     const [name, setName] = useState('')

@@ -25,7 +25,8 @@ export async function createHistoricLog() {
     throw new Error('Usuário não encontrado');
   }
 
-  const plate = userDoc.data()?.plate;
+  const plate = userDoc.data()?.placaVeicular;
+  const idSchool = userDoc.data()?.idSchool;
 
   // Verificar se já existe um registro de histórico para o mesmo usuário com status "departure"
   const historicQuery = query(collection(db, 'historic'), where('userId', '==', userId), where('status', '==', 'departure'));
@@ -43,6 +44,7 @@ export async function createHistoricLog() {
     status: 'departure',
     createdAt: new Date(),
     updatedAt: new Date(),
+    idSchool: idSchool,
   };
 
   const logDocRef = doc(collection(db, 'historic'), randomId);

@@ -22,20 +22,22 @@ export function Home_Driver() {
       }
       
       function HandleOnRotas() {
-        console.log('Botão Rotas')
         navigation.navigate('StartRoute')
       }
         
 
   return (
     <Container>
-        <HeaderLogo />
+
+      <HeaderLogo />
       <Highlight title='Início' subTitle='Gerencie sua van escolar.'  />
+        
       <ViewButton>
-      <ButtonTitleAndIcon icon='directions-bus-filled' title='Sobre a van' onPress={HandleOnMotoristas}/>
-      <MarginBetweenButtons />
-      <ButtonTitleAndIcon icon='groups' title='Alunos' onPress={HandleOnDeparture} />
+        <ButtonTitleAndIcon icon='directions-bus-filled' title='Sobre a van' onPress={HandleOnMotoristas}/>
+        <MarginBetweenButtons />
+        <ButtonTitleAndIcon icon='groups' title='Alunos' onPress={HandleOnDeparture} />
       </ViewButton>
+
       <ViewButton>
       <ButtonTitleAndIcon icon='route' title='Rotas' onPress={HandleOnRotas}/>
       </ViewButton>
