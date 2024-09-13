@@ -1,6 +1,6 @@
 import { TouchableOpacityProps } from 'react-native';
-import { Container, Info, Plate, Departure } from './styles';
-import { Check, ClockClockwise } from 'phosphor-react-native';
+import { Container, Info, Plate } from './styles';
+import { Check, ClockClockwise, Van, Flag } from 'phosphor-react-native';
 import { useTheme } from 'styled-components';
 
 export type HistoricCardProps = {
@@ -10,7 +10,7 @@ export type HistoricCardProps = {
  }
 
 type Props = TouchableOpacityProps & {
-    data: HistoricCardProps
+    data: HistoricCardProps,
 }
 
 export function HistoricCard({ data, ...rest }: Props) {

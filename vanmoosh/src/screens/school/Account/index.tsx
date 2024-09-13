@@ -34,7 +34,7 @@ export default function Account_School() {
 
   return (
     <Container>
-      <HeaderSettings />
+      <HeaderSettings title='Colégio Politécnico Bento Quirino'/>
       <OptionsCard title='Pagamento' />
       <OptionsCard title='Editar Perfil' onPress={handleOnClickEditProfile}/>
       <OptionsCard title='Endereços' />

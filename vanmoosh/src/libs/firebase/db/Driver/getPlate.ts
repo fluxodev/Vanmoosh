@@ -17,6 +17,7 @@ export async function getDriverPlate(): Promise<string | null> {
           const driverDocRef = doc(firestore, "driver", user.uid);
           const driverDoc = await getDoc(driverDocRef);
 
+
           if (driverDoc.exists()) {
             const plate = driverDoc.data().placaVeicular;
             resolve(plate);

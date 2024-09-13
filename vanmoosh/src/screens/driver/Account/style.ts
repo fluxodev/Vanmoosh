@@ -7,3 +7,11 @@ export const Container = styled.SafeAreaView`
     justify-content: center;
 
 `;
+
+export const MarginButton = styled.View`
+    margin-top: 110%;
+`;
+
+export const MarginCardButton = styled.SafeAreaView`
+   margin-top: 30%;
+`;
