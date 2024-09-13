@@ -11,7 +11,7 @@ import {
 import { Text } from 'react-native'
 import { TextError } from '../SignUp/styles'
 import { StatusBar, Pressable } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Highlight } from '@components/Highlight'
 import { Input } from '@components/Input'
 import { useNavigation } from '@react-navigation/native'
@@ -19,7 +19,9 @@ import { useState } from 'react'
 import { AuthNavigatorRoutesProps } from '@routes/Auth/app.routes'
 import { SchoolNavigatorRoutesProps } from '@routes/Routes_School/app.routes'
 
+
 import { useAuth } from '@hooks/useAuth'
+import { User } from 'firebase/auth';
 
 
 import { useForm, Controller } from "react-hook-form";
@@ -40,21 +42,19 @@ const signInSchema = yup.object({
 });
 
 
-
-
 import { ButtonAdd } from '@components/Button'
 
 import LogoImg from '@assets/white_vanmoosh.png'
 import background from '@assets/background.png'
 import { AppError } from '@utils/AppError'
 import { Alert } from 'react-native'
-
-
+import { getFirestore, getDoc, setDoc } from 'firebase/firestore'
+import { doc } from '@firebase/firestore'
+import { authContext, AuthContextProvider, currentUser } from '@contexts/AuthContext'
 
 export function SignIn() {
 
   const { signIn } = useAuth();
-
 
   const {
     control,
@@ -68,11 +68,11 @@ export function SignIn() {
   const navigation = useNavigation<SchoolNavigatorRoutesProps>()
 
   async function handleLogin(data: FormDataProps) {
-
     const { email, password } = data;
-
+    
     try {
       await signIn(email, password);
+
     } catch (error) {
       console.log(error);
       Alert.alert('Erro', 'Usuário ou senha inválidos')

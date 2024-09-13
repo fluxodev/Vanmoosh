@@ -20,6 +20,7 @@ import { getUser } from '@storage/auth/storageUser';
 import { SchoolData } from '@screens/auth/SchoolData';
 import { Account_Driver } from '@screens/driver/Account';
 
+
 const { Navigator, Screen } = createNativeStackNavigator();
 
 export default function Routes() {
