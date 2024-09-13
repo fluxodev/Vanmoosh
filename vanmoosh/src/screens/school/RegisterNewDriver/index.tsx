@@ -3,10 +3,11 @@ import { Container, Body, Scroll } from "./style";
 import { TypesOfDataToBeFilledIn } from "@components/TypesOfDataToBeFilledin";
 import { Input } from "@components/Input";
 import { ButtonAdd } from "@components/Button";
+import { addDriver } from "@libs/firebase/db/Driver/addDriver";
 import { Header } from "@components/Header";
-import { addDriver } from "@libs/firebase/db/drivers/addDriver";
 import { useState } from "react";
 import { getAuth } from "firebase/auth";
+
 
 import app from '@libs/firebase/config'
 
