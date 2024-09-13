@@ -5,9 +5,11 @@ import {  SignOut  } from 'phosphor-react-native'
 import { useNavigation } from '@react-navigation/native';
 import { Highlight } from "@components/Highlight";
 
+type Props = {
+    title: string;
+}
 
-
-export function HeaderSettings(){
+export function HeaderSettings({title}: Props){
 
     const navigation = useNavigation();
 
@@ -18,7 +20,7 @@ export function HeaderSettings(){
     return (
         <Container>
             <DivFlexRow>
-                <Title>Colégio Politécnico Bento Quirino</Title>
+                <Title>{title}</Title>
             </DivFlexRow>
             
             <UserPhoto source={logoImg} defaultSource={logoImg}/>

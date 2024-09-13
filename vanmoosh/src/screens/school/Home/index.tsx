@@ -39,13 +39,6 @@ function HandleOnRotas() {
       <ViewButton>
       <ButtonTitleAndIcon icon='route' title='Rotas' onPress={HandleOnRotas}/>
       </ViewButton>
-      
-      
-      
-      
-      
-      
-
     </Container>
   )
 }
