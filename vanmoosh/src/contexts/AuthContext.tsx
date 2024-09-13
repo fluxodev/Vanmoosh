@@ -1,8 +1,8 @@
 import { createContext, ReactNode, useState, useEffect } from "react";
-import { User, defaultUser } from "@utils/users";
+import { User } from "@utils/users";
 import { signInWithEmail } from "@libs/firebase/auth";
 import { saveUser, getUser } from "@storage/auth/storageUser";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { doc } from '@firebase/firestore'
 import { getDoc, getFirestore } from "firebase/firestore";
 import app from "@libs/firebase/config"
@@ -42,7 +42,9 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   async function signIn(email: string, password: string) {
     try {
       const auth = getAuth(app)
+      const db = getFirestore(app);
       const response = await signInWithEmail(email, password)
+      
       console.log(response)
       
       if(response) {
@@ -50,16 +52,14 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         return
       }
 
-      const currentUser : any = auth.currentUser
-
-      const db = getFirestore(app);
+      const currentUser: any = auth.currentUser
       const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
+      
 
-      const userData : any = userDoc.data();
+      const userData: any = userDoc.data();
       const role = userData.role;
       console.log(role)
       
-      // if (userDoc.exists()) {
       const loggedInUser = {
         ...user,
         email,

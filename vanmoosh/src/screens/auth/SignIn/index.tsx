@@ -11,7 +11,7 @@ import {
 import { Text } from 'react-native'
 import { TextError } from '../SignUp/styles'
 import { StatusBar, Pressable } from 'react-native'
-import React, { useContext } from 'react'
+import React from 'react'
 import { Highlight } from '@components/Highlight'
 import { Input } from '@components/Input'
 import { useNavigation } from '@react-navigation/native'
@@ -48,9 +48,6 @@ import LogoImg from '@assets/white_vanmoosh.png'
 import background from '@assets/background.png'
 import { AppError } from '@utils/AppError'
 import { Alert } from 'react-native'
-import { getFirestore, getDoc, setDoc } from 'firebase/firestore'
-import { doc } from '@firebase/firestore'
-import { authContext, AuthContextProvider, currentUser } from '@contexts/AuthContext'
 
 export function SignIn() {
 
