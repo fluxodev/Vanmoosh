@@ -50,7 +50,7 @@ export default function Routes() {
       }, []);
     return (
         <NavigationContainer theme={themeNavigator}>   
-            {user.email ? <SchoolRoutes /> :  <AuthRoutes />}
+            {user.email ? <DriverRoutes /> :  <AuthRoutes />}
         </NavigationContainer>
     )
 }
