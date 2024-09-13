@@ -14,6 +14,7 @@ export const Container = styled(TouchableOpacity)`
   justify-content: center;
   align-items: center;
   border-radius: 20px;
+  background-color: ${({ theme }) => theme.COLORS.WHITE_GRAY};
 `;
 
 export const Icon = styled(MaterialIcons).attrs<Props>(({ theme, type }) => ({

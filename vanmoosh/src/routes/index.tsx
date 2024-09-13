@@ -9,14 +9,16 @@ import { DriverRoutes } from './Routes_Driver/app.routes';
 import { Home_Responsible } from '@screens/responsible/Home';
 import Account_Responsible from '@screens/responsible/Account';
 import { SchoolRegister } from '@screens/auth/SchoolRegister';
-
 import { useContext } from 'react';
 import { authContext } from '@contexts/AuthContext';
 import { useAuth } from '@hooks/useAuth';
+import { AddChild } from '@screens/responsible/AddChild';
+import { ResponsibleRoutes } from './Routes_Responsible/app.routes';
 
 import { useEffect } from 'react';
 import { getUser } from '@storage/auth/storageUser';
 import { SchoolData } from '@screens/auth/SchoolData';
+import { Account_Driver } from '@screens/driver/Account';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -48,7 +50,11 @@ export default function Routes() {
       }, []);
     return (
         <NavigationContainer theme={themeNavigator}>   
+
             {!user.email ? <SchoolData/> :  <AuthRoutes />}
+
+            {!user.email ? <DriverRoutes /> :  <AuthRoutes />}
+
         </NavigationContainer>
     )
 }

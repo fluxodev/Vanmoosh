@@ -9,6 +9,6 @@ export const Container  = styled.SafeAreaView`
 `;
 
 export const Body = styled.View`
-    margin-top: 100;
-    margin-left: 20;
+    margin-top: 100px;
+    margin-left: 20px;
 `;

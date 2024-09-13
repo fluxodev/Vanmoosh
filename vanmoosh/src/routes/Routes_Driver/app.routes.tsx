@@ -32,8 +32,12 @@ type DriverRoutesProps = {
     Chat_Driver: undefined;
     Account_Driver: undefined;
 
-    Departure: undefined;
-    Arrival: undefined;
+    Departure: {
+        id: string,
+    };
+    Arrival: {
+        id: string,
+    };
     StartRoute: undefined;
 }
 

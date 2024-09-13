@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import { Container } from './styles'
-import { HeaderSettingsSchools } from '@components/SettingsHeaderSchool'
+import { HeaderSettings } from '@components/SettingsHeaderSchool'
 import { OptionsCard } from '@components/OptionsCard'
 import React from 'react'
 import { SchoolNavigatorRoutesProps } from '@routes/Routes_School/app.routes'
@@ -34,7 +34,7 @@ export default function Account_School() {
 
   return (
     <Container>
-      <HeaderSettingsSchools />
+      <HeaderSettings title='Colégio Politécnico Bento Quirino'/>
       <OptionsCard title='Pagamento' />
       <OptionsCard title='Editar Perfil' onPress={handleOnClickEditProfile}/>
       <OptionsCard title='Endereços' />

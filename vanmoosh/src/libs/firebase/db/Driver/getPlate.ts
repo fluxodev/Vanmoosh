@@ -12,13 +12,14 @@ const TEST_USER_ID = "vWsHkFp9qvV10T6yCnMr";
 export async function getDriverPlate(): Promise<string | null> {
   return new Promise<string | null>((resolve, reject) => {
     onAuthStateChanged(auth, async (user) => {
-      if (TEST_MODE) {
+      if (user) {
         try {
-          const driverDocRef = doc(firestore, "driver", TEST_USER_ID);
+          const driverDocRef = doc(firestore, "driver", user.uid);
           const driverDoc = await getDoc(driverDocRef);
 
+
           if (driverDoc.exists()) {
-            const plate = driverDoc.data().plate;
+            const plate = driverDoc.data().placaVeicular;
             resolve(plate);
           } else {
             console.log("Documento do motorista não encontrado.");
