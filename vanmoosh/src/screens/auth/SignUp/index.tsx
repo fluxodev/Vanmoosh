@@ -77,7 +77,7 @@ export function SignUp() {
     const registerUserResponse = await registerUser(newUser, password);
 
     setUser(newUser);
-    navigation.navigate('CommomUserRegister');
+    navigation.navigate('SelectUser');
 
     } catch (error) {
       console.log(error);

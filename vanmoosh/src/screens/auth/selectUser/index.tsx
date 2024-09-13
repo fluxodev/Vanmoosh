@@ -15,7 +15,7 @@ import { ButtonAdd } from "@components/Button";
   import { useNavigation } from "@react-navigation/native";
   
   import { registerUser } from "@libs/firebase/auth";
-  
+  import { AuthNavigatorRoutesProps } from "@routes/Auth/app.routes";
   
   import LogoImg from "@assets/white_vanmoosh.png";
 import background from "@assets/background.png";
@@ -28,14 +28,14 @@ import background from "@assets/background.png";
   
   export function SelectUser() {
   
-    const navigation = useNavigation<SchoolNavigatorRoutesProps>();
+    const navigation = useNavigation<AuthNavigatorRoutesProps>();
   
     function HandleCommom(){
-        console.log('Comum');
+        navigation.navigate('CommomUserRegister')
         
     }
     function HandleSchool(){
-        console.log('Escolar');
+      navigation.navigate('SchoolRegister')
         
     }
   
