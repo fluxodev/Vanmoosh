@@ -11,7 +11,7 @@ import {
 import { Text } from 'react-native'
 import { TextError } from '../SignUp/styles'
 import { StatusBar, Pressable } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Highlight } from '@components/Highlight'
 import { Input } from '@components/Input'
 import { useNavigation } from '@react-navigation/native'
@@ -48,10 +48,9 @@ import LogoImg from '@assets/white_vanmoosh.png'
 import background from '@assets/background.png'
 import { AppError } from '@utils/AppError'
 import { Alert } from 'react-native'
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
-import { AuthContextProvider } from '@contexts/AuthContext'
-
-//  nome das roles, função sign in pode estar dando problema com "user", routes estão dando b.o. (nested navigator 💀)
+import { getFirestore, getDoc, setDoc } from 'firebase/firestore'
+import { doc } from '@firebase/firestore'
+import { authContext, AuthContextProvider, currentUser } from '@contexts/AuthContext'
 
 export function SignIn() {
 
@@ -72,38 +71,8 @@ export function SignIn() {
     const { email, password } = data;
     
     try {
-      const user = await signIn(email, password);
-      const userUID = user.uid;
+      await signIn(email, password);
 
-      const db = getFirestore();
-      const userRef = doc(db, 'users', userUID)
-      const userDoc = await getDoc(userRef);
-      
-      
-      if (!userDoc.exists()) {
-        const userData = userDoc.data();
-        const role = userData.role;
-
-        // redirect
-        switch (role) {
-          case 'driver':
-            navigation.navigate('DriverRoutes')
-            break;
-          case 'school':
-            navigation.navigate('SchoolRoutes')
-            break;
-          case 'responsible':
-            navigation.navigate('ResponsibleRoutes')
-            break;
-          case 'common':
-            console.log("common")
-            break;
-          default:
-            break;
-        }
-      } else {
-        console.log('Role não encontrada nesse usuário.')
-      }
     } catch (error) {
       console.log(error);
       Alert.alert('Erro', 'Usuário ou senha inválidos')
