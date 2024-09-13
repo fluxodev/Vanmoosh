@@ -122,7 +122,6 @@ export function StartRoute() {
                 isSync: item.isSync,
               }}
               onPress={() => handleOnButtonHistoricLog(item.id)}
-              
             />
           )}
           
