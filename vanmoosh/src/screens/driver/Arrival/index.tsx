@@ -2,9 +2,9 @@ import { Container, MarginBetweenButtons } from "./style"
 import HeaderDeparture from "@components/HeaderDeparture"
 import PlacaInput from "@components/PlacaInput"
 import { ButtonAdd } from "@components/Button"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { DriverNavigatorRoutesProps } from "@routes/Routes_Driver/app.routes"
-import { useNavigation } from "@react-navigation/native"
+import { useFocusEffect, useNavigation } from "@react-navigation/native"
 import { Alert } from "react-native"
 import { createHistoricLog } from "@libs/firebase/db/Driver/historic"
 import { ButtonIcon } from "@components/ButtonIcon"
@@ -17,6 +17,9 @@ import { getStorageLocations } from "@storage/Location/StorageLocation"
 import { LatLng } from "react-native-maps"
 import { ViewMap } from "@components/MapView"
 import { updateTripCoord } from "@libs/firebase/db/Driver/updateTripCoords"
+import { getHistoricDocument } from "@libs/firebase/db/Driver/checkTrip"
+import { getReverseGeolocation } from "@utils/getAdressLocation"
+import { Locations } from "@components/Locations"
 
 type RouteParamsProps = {
   id: string
@@ -24,6 +27,9 @@ type RouteParamsProps = {
 
 export function Arrival() {
   const [coords, setCoords] = useState<LatLng[]>([]);
+  const [departureAddressCurrent, setDepartureAddressCurrent] = useState('')
+  const [arrivalAddressCurrent, setArrivalAddressCurrent] = useState('')
+  const [arrival, setArrival] = useState(false)
   const route = useRoute()
   const { id } = route.params as RouteParamsProps;
 
@@ -32,6 +38,7 @@ export function Arrival() {
   const [isRegistered, setIsRegistered] = useState(false)
 
   const navigation = useNavigation<DriverNavigatorRoutesProps>()
+
 
   function handleRemoveVehicleUsage() {
     Alert.alert(
@@ -55,7 +62,44 @@ export function Arrival() {
   async function getLocationsInfo() {
     try {
       const log = await getStorageLocations()
+      const data = await getHistoricDocument(id);
+
+      const status = data.status
+      if(status === 'departure'){
       setCoords(log)
+      } else {
+        setCoords(data?.coords ?? [])
+        const lat = JSON.stringify(data.coords[data.coords.length - 1].latitude).toString()
+        const long = JSON.stringify(data.coords[data.coords.length - 1].longitude).toString()
+
+        console.log(`LATITUDE1: ${lat}\nLONGITUDE: ${long}`);
+        
+        
+
+        getReverseGeolocation(lat, long).then((address) => {
+          if (address && address.address && address.address.road) {
+            setArrivalAddressCurrent(address.address.road)
+          } else {
+            console.log('Rua não encontrada');
+          }
+        })
+      }
+
+      if(data.coords) {
+
+        const lat = JSON.stringify(data.coords[0].latitude).toString()
+        const long = JSON.stringify(data.coords[0].longitude).toString()
+
+
+        getReverseGeolocation(lat, long).then((address) => {
+          if (address && address.address && address.address.road) {
+            setDepartureAddressCurrent(address.address.road)
+          } else {
+            console.log('Rua não encontrada');
+          }
+        })
+
+      }
       
     } catch (error) {
       console.error(error);
@@ -87,25 +131,55 @@ export function Arrival() {
       setIsRegistered(false)
     }
   }
-  useEffect(() => {
-    getLocationsInfo()
-  }, [])
+  async function fetchHistoricData() {
+    try {
+      const data = await getHistoricDocument(id);
+
+      const status = data.status
+
+      setArrival(status === 'arrival');
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Erro", "Não foi possível carregar os dados do histórico.");
+    }
+  }
+
+
+  useFocusEffect(
+    useCallback(() => {
+      getLocationsInfo()
+      fetchHistoricData();
+    }, [id])
+  );
   return (
 
 
     
     <Container>
-        <HeaderDeparture title="Chegada">
+        <HeaderDeparture title={arrival ? 'Detalhes' : 'Chegada'}>
         </HeaderDeparture>
         
         {coords.length > 0 && 
         <ViewMap coords={coords}/>
         }
-       
-        <ButtonAdd title="Registrar Chegada" onPress={handleArrival}/>
-        <MarginBetweenButtons></MarginBetweenButtons>
-        <Highlight title="Deseja retornar?" subTitle="Aperte o botão abaixo e retorne sem cancelar sua viagem."/>
-        <ButtonIcon icon="not-interested" type="primary" onPress={handleRemoveVehicleUsage} />
+
+        {arrival ?
+        <Locations 
+        departure={{label: 'Saída em', description: departureAddressCurrent}}
+        arrival={{label: 'Chegada em', description: arrivalAddressCurrent}}
+        
+        /> : <></>
+        }
+
+        {!arrival && (
+        <>
+        
+          <ButtonAdd title="Registrar Chegada" onPress={handleArrival} />
+          <MarginBetweenButtons />
+          <Highlight title="Deseja retornar?" subTitle="Aperte o botão abaixo e retorne sem cancelar sua viagem." />
+          <ButtonIcon icon="not-interested" type="primary" onPress={handleRemoveVehicleUsage} />
+        </>
+      )}
     </Container>
 
   )

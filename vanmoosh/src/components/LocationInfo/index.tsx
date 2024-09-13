@@ -3,7 +3,7 @@ import { BoxIconProps, IconBox } from "@components/IconBox";
 
 export type InfoLocationProps = {
     label: string;
-    description: string;
+    description?: string;
 }
 
 type Props = InfoLocationProps & {

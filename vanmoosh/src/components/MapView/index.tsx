@@ -25,7 +25,7 @@ export function ViewMap({coords, ...rest}: Props){
     <MapView 
     ref={mapRef}
     provider={PROVIDER_DEFAULT}
-    style={{    width: '100%', height:'60%', borderRadius: 100, marginTop: '20%'}}
+    style={{    width: '100%', height:'50%', borderRadius: 100, marginTop: '30%'}}
     region={{
         latitude: ultCoord.latitude,
         longitude: ultCoord.longitude,
