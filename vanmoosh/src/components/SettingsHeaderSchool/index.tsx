@@ -5,11 +5,12 @@ import {  SignOut  } from 'phosphor-react-native'
 import { useNavigation } from '@react-navigation/native';
 import { Highlight } from "@components/Highlight";
 
-type Props = {
-    title: string;
-}
+import { fetchNameUser } from "@libs/firebase/db/fetchNameUser";
+import { useEffect, useState } from "react";
 
-export function HeaderSettings({title}: Props){
+export function HeaderSettings(){
+
+    const [name, setName] = useState('')
 
     const navigation = useNavigation();
 
@@ -17,10 +18,24 @@ export function HeaderSettings({title}: Props){
         navigation.goBack();
     }
 
+    async function fetchName(){
+        try {
+            const result = await fetchNameUser()
+            setName(result)
+        } catch (error) {
+            console.error(error);
+            
+        }
+    }
+
+    useEffect(() => {
+        fetchName()
+    }, [])
+
     return (
         <Container>
             <DivFlexRow>
-                <Title>{title}</Title>
+                <Title>{name}</Title>
             </DivFlexRow>
             
             <UserPhoto source={logoImg} defaultSource={logoImg}/>
