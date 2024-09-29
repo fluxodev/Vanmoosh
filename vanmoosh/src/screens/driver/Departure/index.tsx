@@ -45,7 +45,6 @@ export function Departure() {
       
 
       const backgrounPermissions = await requestBackgroundPermissionsAsync()
-      console.log(backgrounPermissions);
       
       if(!backgrounPermissions.granted){
         setIsRegistered(false)
@@ -57,14 +56,13 @@ export function Departure() {
       }
 
       const log = await createHistoricLog();
-      console.log(`Histórico de ID ${id} alterado para o status: ${log.status}`);
       await startLocTask();
 
       
       navigation.goBack()
       
     } catch (error) {
-      console.log("Erro: > ", error);
+      console.error("Erro: > ", error);
       Alert.alert("Erro", 'Não foi possivel registrar o início da viagem.')
       setIsRegistered(false)
       return
@@ -94,8 +92,6 @@ export function Departure() {
       .then((address) => {
         if (address && address.address && address.address.road) {
           setAddressCurrent(address.address.road)
-        } else {
-          console.log('Rua não encontrada');
         }
       })
       .finally(() => setIsLoadingLoc(false))

@@ -1,7 +1,6 @@
 import { getFirestore, doc, updateDoc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import firebaseInstance from "../config";
-import { User } from "@utils/users";
 
 const db = getFirestore(firebaseInstance);
 
@@ -30,7 +29,6 @@ export async function registerCommomUser(newData: newDataProps) {
                 role: "common",
                 updatedAt: new Date().toISOString(),
               });
-              console.log('Dados do usuário atualizados com sucesso!');
               resolve();
             } catch (error) {
               console.error('Erro ao atualizar dados do usuário:', error);

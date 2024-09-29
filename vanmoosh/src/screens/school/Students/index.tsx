@@ -6,22 +6,14 @@ import { ButtonAdd } from "@components/Button";
 import { ButtonIcon } from "@components/ButtonIcon";
 import { Input } from "@components/Input";
 import { Filter } from "@components/Filter";
-
 import { Container, Form, HeaderList, Totality } from "./styles";
-
 import { Alert, FlatList, Keyboard, TextInput } from "react-native";
-
 import { useState, useEffect, useRef } from "react";
-
 import { useRoute, useNavigation } from "@react-navigation/native";
-
 import { AppError } from "@utils/AppError";
-
 import { StudentAddByGroup } from "@libs/firebase/db/students/studentAddByGroup";
 import { getStudentsByGroup } from "@libs/firebase/db/students/studentsGetByGroup";
-import { StudentGetByGroup } from "@libs/firebase/db/students/studentGetByGroup";
 import { StudentStorageDTO } from "@utils/StudentStorageDTO";
-
 import { studentRemoveByGroup } from "@libs/firebase/db/students/studentRemoveByGroup";
 import { groupRemoveByName } from "@libs/firebase/db/groups/removeGroup";
 import { Loading } from "@components/Loading";
@@ -50,8 +42,6 @@ export default function Students() {
 
     const route = useRoute(); // ele pega as informações da rota
     const { group } = route.params as { group: string }; // ele pega o parametro que foi passado na rota
-    console.log(group);
-    
 
     const newStudentNameInputRef = useRef<TextInput>(null);
 
@@ -81,7 +71,7 @@ export default function Students() {
             if (error instanceof AppError) {
                 return Alert.alert('Novo Aluno', error.message)
             } else {
-                console.log(error);
+                console.error(error);
                 Alert.alert('Novo Aluno', 'Não foi possível adicionar o aluno.')
             }
         }
@@ -95,7 +85,7 @@ export default function Students() {
 
             setStudents(studentsByGroup);
         } catch (error) {
-            console.log(error);
+            console.error(error);
             Alert.alert('Alunos', 'Não foi possível carregar os alunos.')
         } finally {
             setIsLoading(false);
@@ -110,7 +100,7 @@ export default function Students() {
             await studentRemoveByGroup(studentName, group);
             fetchStudentsByTeam();
         } catch (error) {
-            console.log(error);
+            console.error(error);
             Alert.alert('Remover Aluno', 'Não foi possível remover o aluno.')
         }
     }
@@ -133,7 +123,7 @@ export default function Students() {
             navigation.navigate('Groups');
 
         } catch (error) {
-            console.log(error);
+            console.error(error);
             Alert.alert('Remover Turma', 'Não foi possível remover a turma.')
         }
 
@@ -159,8 +149,6 @@ export default function Students() {
                 throw new Error('Usuário não autenticado.');
             }
 
-            console.log('ID da Escola:', idSchool);
-
             // Busca o documento do grupo pelo nome do grupo
             const q = query(collection(db, 'groups'), where('name', '==', group));
             const querySnapshot = await getDocs(q);
@@ -168,7 +156,6 @@ export default function Students() {
             if (!querySnapshot.empty) {
                 const groupDoc = querySnapshot.docs[0];
                 const groupData = groupDoc.data();
-                console.log('Dados do Grupo:', groupData);
 
                 if (groupData.idSchool === idSchool) {
                     setGroupCode(groupData.codigo);

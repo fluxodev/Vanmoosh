@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components/native";
+import styled from "styled-components/native";
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { View } from "react-native";
 import { Image, ImageBackground, Pressable } from "react-native";

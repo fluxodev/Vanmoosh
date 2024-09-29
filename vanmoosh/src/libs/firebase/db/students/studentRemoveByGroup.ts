@@ -1,9 +1,5 @@
 import { getFirestore, getDoc, doc, updateDoc, arrayRemove } from "firebase/firestore";
-import { AppError } from "@utils/AppError";
-
 import app from '@libs/firebase/config'
-
-import { StudentStorageDTO } from "@utils/StudentStorageDTO";
 
 const db = getFirestore(app)
 
@@ -19,7 +15,6 @@ export async function studentRemoveByGroup(studentName: string, group: string) {
         const groupDoc = await getDoc(groupRef);
 
         if (!groupDoc.exists()) {
-            console.log('Grupo não encontrado.');
             return;
         }
 
@@ -32,9 +27,9 @@ export async function studentRemoveByGroup(studentName: string, group: string) {
             await updateDoc(groupRef, {
                 students: arrayRemove(studentToRemove)
             });
-            console.log('Estudante removido com sucesso!');
+
         } else {
-            console.log('Estudante não encontrado.');
+
         }
     } catch (error) {
         console.error('Erro ao remover estudante: ', error);

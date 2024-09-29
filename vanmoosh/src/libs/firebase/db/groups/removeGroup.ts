@@ -26,7 +26,6 @@ export async function groupRemoveByName(groupDeleted: string) {
             await deleteDoc(doc(db, 'students', studentDoc.id));
         });
 
-        console.log('Grupo e dados associados removidos com sucesso!');
     } catch (error) {
         console.error('Erro ao remover grupo: ', error);
         throw error;

@@ -19,7 +19,6 @@ export async function getHistoricByUser(){
         const querySnapshot = await getDocs(q)
 
         if(querySnapshot.empty){
-            console.log('Nenhum histórico encontrado.');
             return []
         }
 

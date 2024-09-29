@@ -37,7 +37,7 @@ export default function Groups() {
       
 
     } catch (error) {
-      console.log(error);
+      console.error(error);
       Alert.alert('Turmas', 'Erro ao buscar turmas!', [{ text: 'OK' }]);
     } finally { //finally é uma função que é executada independente se o try ou catch der certo
       setIsLoading(false);

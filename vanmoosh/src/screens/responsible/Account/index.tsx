@@ -2,9 +2,6 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 
 import { Container } from './style'
-
-import { AddChild } from '../AddChild'
-
 import { OptionsCard } from '@components/OptionsCard'
 import { HeaderSettings } from '@components/SettingsHeaderSchool'
 import { ResponsibleNavigatorRoutesProps } from '@routes/Routes_Responsible/app.routes'
@@ -29,9 +26,8 @@ export function Account_Responsible() {
     try {
       await signOut(auth)
       await AsyncStorage.removeItem('@user_storage')
-      console.log("Usuário deslogado com sucesso e dados limpos do AsyncStorage!");
     } catch (error) {
-      console.log(error);
+      console.error(error);
       
     }
   }

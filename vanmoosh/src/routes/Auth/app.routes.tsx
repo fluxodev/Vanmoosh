@@ -7,7 +7,6 @@ import { SignIn } from '@screens/auth/SignIn';
 import { SignUp } from '@screens/auth/SignUp';
 import { SelectUser } from '@screens/auth/selectUser';
 import { CommomUserRegister } from '@screens/auth/CommonUserRegister';
-import { SchoolRegister } from '@screens/auth/SchoolRegister';
 import { SchoolData } from '@screens/auth/SchoolData';
 
 //-------------------------------------//----------------------------------//

@@ -1,9 +1,6 @@
 import { getFirestore, doc, getDoc } from "firebase/firestore";
-import { AppError } from "@utils/AppError";
-
 import app from '@libs/firebase/config'
 
-import { StudentStorageDTO } from "@utils/StudentStorageDTO";
 
 const db = getFirestore(app)
 
@@ -20,7 +17,6 @@ export async function StudentGetByGroup(group: string): Promise<Student[]> {
         const groupDoc = await getDoc(groupRef);
 
         if (!groupDoc.exists()) {
-            console.log('Grupo não encontrado.');
             return [];
         }
 

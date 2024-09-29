@@ -8,27 +8,21 @@ import {
   MarginBottom,
   styles
 } from './styles'
-import { Text } from 'react-native'
+import { Pressable, Text } from 'react-native'
 import { TextError } from '../SignUp/styles'
-import { StatusBar, Pressable } from 'react-native'
 import React from 'react'
 import { Highlight } from '@components/Highlight'
 import { Input } from '@components/Input'
 import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react'
-import { AuthNavigatorRoutesProps } from '@routes/Auth/app.routes'
 import { SchoolNavigatorRoutesProps } from '@routes/Routes_School/app.routes'
 
-
 import { useAuth } from '@hooks/useAuth'
-import { User } from 'firebase/auth';
 
 
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
-import { signInWithEmail } from '@libs/firebase/auth'
 
 type FormDataProps = {
   email: string;
@@ -46,7 +40,6 @@ import { ButtonAdd } from '@components/Button'
 
 import LogoImg from '@assets/white_vanmoosh.png'
 import background from '@assets/background.png'
-import { AppError } from '@utils/AppError'
 import { Alert } from 'react-native'
 
 export function SignIn() {
@@ -71,7 +64,7 @@ export function SignIn() {
       await signIn(email, password);
 
     } catch (error) {
-      console.log(error);
+      console.error(error);
       Alert.alert('Erro', 'Usuário ou senha inválidos')
       
     }

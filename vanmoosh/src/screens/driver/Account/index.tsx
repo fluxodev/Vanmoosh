@@ -5,11 +5,10 @@ import { getAuth } from 'firebase/auth'
 import app from '@libs/firebase/config'
 import { signOut } from 'firebase/auth'
 import { HeaderSettings } from '@components/SettingsHeaderSchool'
-import { OptionsCard } from '@components/OptionsCard'
 import { ButtonTitleAndIcon } from '@components/ButtonTitleAndIcon'
 import { useNavigation } from '@react-navigation/native'
 import { DriverNavigatorRoutesProps } from '@routes/Routes_Driver/app.routes'
-import { doc, getFirestore } from 'firebase/firestore'
+import { getFirestore } from 'firebase/firestore'
 
 export function Account_Driver() {
 
@@ -25,9 +24,8 @@ export function Account_Driver() {
     try {
       await signOut(auth)
       await AsyncStorage.removeItem('@user_storage')
-      console.log("Usuário deslogado com sucesso e dados limpos do AsyncStorage!");
     } catch (error) {
-      console.log(error);
+      console.error(error);
       
     }
 

@@ -43,14 +43,8 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     try {
       const auth = getAuth(app)
       const db = getFirestore(app);
-      const response = await signInWithEmail(email, password)
+      await signInWithEmail(email, password)
       
-      console.log(response)
-      
-      if(response) {
-        console.log(response.message)
-        return
-      }
 
       const currentUser: any = auth.currentUser
       const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
@@ -58,7 +52,6 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
       const userData: any = userDoc.data();
       const role = userData.role;
-      console.log(role)
       
       const loggedInUser = {
         ...user,
@@ -66,7 +59,6 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         password,
         role,
       };
-      console.log(loggedInUser)
       setUser({ ...loggedInUser});
       await saveUser();
     // }

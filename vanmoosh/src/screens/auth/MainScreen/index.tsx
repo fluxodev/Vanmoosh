@@ -1,5 +1,4 @@
 import { Container, MarginBetweenButtons, Text1, Text2, Text3, Header, BackgroundImage, Footer, MarginBetweenParagraphs, LogoImage } from './styles'
-import { Image,  } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { ButtonMain } from '@components/ButtonMain'

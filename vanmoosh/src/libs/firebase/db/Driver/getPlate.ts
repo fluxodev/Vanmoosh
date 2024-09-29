@@ -22,7 +22,7 @@ export async function getDriverPlate(): Promise<string | null> {
             const plate = driverDoc.data().placaVeicular;
             resolve(plate);
           } else {
-            console.log("Documento do motorista não encontrado.");
+            // console.log("Documento do motorista não encontrado.");
             resolve(null);
           }
         } catch (error) {
@@ -30,7 +30,7 @@ export async function getDriverPlate(): Promise<string | null> {
           reject(error);
         }
       } else {
-        console.log("Nenhum usuário logado.");
+        // console.log("Nenhum usuário logado.");
         resolve(null);
       }
     });

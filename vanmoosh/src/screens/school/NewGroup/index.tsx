@@ -40,7 +40,7 @@ export default function NewGroup() {
 
             } else {
                 Alert.alert('Erro', 'Não foi possível criar a turma. Tente novamente.');
-                console.log(error);
+                console.error(error);
 
             }
         }

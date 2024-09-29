@@ -18,7 +18,6 @@ export async function fetchNameUser(){
         const userDocSnapshot = await getDoc(userDocRef)
 
         if(!userDocSnapshot.exists()){
-            console.log('Usuário Não Encontrado');
         }
 
         const userData: any = userDocSnapshot.data()

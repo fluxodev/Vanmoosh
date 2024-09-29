@@ -34,7 +34,6 @@ export async function createGroup(newGroup: string) {
             alunos: [] 
         });
 
-        console.log('Grupo adicionado com sucesso!');
     } catch (error) {
         console.error('Erro ao adicionar grupo: ', error);
         throw error;

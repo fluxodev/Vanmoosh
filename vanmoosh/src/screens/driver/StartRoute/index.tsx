@@ -4,9 +4,7 @@ import { Container, Margin, HeaderMargin, FlatlistView } from "./style";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { DriverNavigatorRoutesProps } from "@routes/Routes_Driver/app.routes";
 import { useCallback, useState } from "react";
-import { useEffect } from "react";
 import { getDriverPlate } from "@libs/firebase/db/Driver/getPlate";
-import { createHistoricLog } from "@libs/firebase/db/Driver/historic";
 import { Alert } from "react-native";
 import { checkOpenTrip } from "@libs/firebase/db/Driver/checkTrip";
 import { getHistoricLogs } from "@libs/firebase/db/Driver/getHistoricLog";
@@ -37,7 +35,7 @@ export function StartRoute() {
         navigation.navigate("Departure", { id: idHistoric });
       }
     } catch (error) {
-      console.log("Erro: > ", error);
+      console.error("Erro: > ", error);
       Alert.alert("Erro", "Não foi possivel registrar o início da viagem.");;
       setHasOpenTrip(false);
     }

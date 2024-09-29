@@ -1,4 +1,3 @@
-import { View, Text } from 'react-native'
 import { Container } from './styles'
 import { HeaderSettings } from '@components/SettingsHeaderSchool'
 import { OptionsCard } from '@components/OptionsCard'
@@ -24,9 +23,8 @@ export default function Account_School() {
     try {
       await signOut(auth)
       await AsyncStorage.removeItem('@user_storage')
-      console.log("Usuário deslogado com sucesso e dados limpos do AsyncStorage!");
-    } catch (error) {
-      console.log(error);
+          } catch (error) {
+      console.error(error);
       
     }
 

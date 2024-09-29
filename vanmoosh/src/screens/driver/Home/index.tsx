@@ -12,12 +12,10 @@ export function Home_Driver() {
     const navigation = useNavigation<DriverNavigatorRoutesProps>()
 
     function HandleOnMotoristas() {
-        console.log('Botão Van')
         Alert.alert('Prezados Motoristas', 'Em breve você poderá gerenciar sua van escolar.')
       }
       
       function HandleOnDeparture(){
-        console.log('Botão Alunos')
         Alert.alert('Prezados Motoristas', 'Em breve você poderá gerenciar os Alunos da sua van.')
       }
       

@@ -10,8 +10,6 @@ import {
 import { getFirestore, doc, setDoc, DocumentReference } from "firebase/firestore";
 import firebaseInstance from "../config";
 
-import { saveUser } from "@storage/auth/storageUser";
-
 // Interfaces para tipagem de retorno
 interface RegisterUserSuccess {
   userDocRef: DocumentReference<User>;

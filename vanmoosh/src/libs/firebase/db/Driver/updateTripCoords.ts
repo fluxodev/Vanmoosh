@@ -4,7 +4,6 @@ import {
   doc,
   updateDoc,
   DocumentReference,
-  arrayUnion,
 } from "firebase/firestore";
 import app from "@libs/firebase/config";
 
@@ -37,8 +36,7 @@ export async function updateTripCoord({ coordenates, id }: Props) {
       coords: coordenates,
     });
 
-    console.log("Coordenada Add ao Firebase!");
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }

@@ -4,13 +4,10 @@ import {
     LogoImage,
     ViewInputs,
     MarginBetweenInputs,
-    MarginBetweenTexts,
     MarginBottom,
-    styles,
     TextError,
   } from "./style";
-  
-  import { Pressable, Text } from "react-native";
+
   import React from "react";
   
   import { Highlight } from "@components/Highlight";
@@ -18,9 +15,7 @@ import {
   import { ButtonAdd } from "@components/Button";
   
   import { useNavigation } from "@react-navigation/native";
-  
-  import { registerUser } from "@libs/firebase/auth";
-  
+
   import { useForm, Controller } from "react-hook-form";
   import * as yup from "yup";
   import { yupResolver } from "@hookform/resolvers/yup";

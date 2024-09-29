@@ -8,23 +8,13 @@ import {
 } from "./styles";
   
   import React from "react";
-  
   import { Highlight } from "@components/Highlight";
-import { ButtonAdd } from "@components/Button";
-  
+  import { ButtonAdd } from "@components/Button";
   import { useNavigation } from "@react-navigation/native";
-  
-  import { registerUser } from "@libs/firebase/auth";
   import { AuthNavigatorRoutesProps } from "@routes/Auth/app.routes";
-  
   import LogoImg from "@assets/white_vanmoosh.png";
-import background from "@assets/background.png";
-  
-  import { User, defaultUser } from "@utils/users";
-  
-  import { useState } from "react";
-  
-  import { SchoolNavigatorRoutesProps } from "@routes/Routes_School/app.routes";
+  import background from "@assets/background.png";
+
   
   export function SelectUser() {
   

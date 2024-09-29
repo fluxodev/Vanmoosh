@@ -34,7 +34,6 @@ export async function StudentAddByGroup(newStudent: StudentStorageDTO, group: st
             students: arrayUnion(newStudent)
         });
 
-        console.log('Estudante adicionado com sucesso!');
     } catch (error) {
         console.error('Erro ao adicionar estudante: ', error);
         throw error;

@@ -1,4 +1,3 @@
-import { View } from "react-native";
 import { Container, Title , Line} from "./styles";
 
 type Props = {

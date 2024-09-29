@@ -1,6 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { User } from "users";
-
 import app from '@libs/firebase/config'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -14,12 +12,10 @@ export async function saveUser() {
     const currentUser = auth.currentUser;
     if (currentUser) {
       await AsyncStorage.setItem(USER_STORAGE, JSON.stringify(currentUser));
-
-      console.log('> Usuário salvo: ', currentUser);
       
     };
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -30,7 +26,7 @@ export async function getUser() {
 
     return user;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return null;
   }
 }

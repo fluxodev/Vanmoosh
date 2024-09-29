@@ -12,27 +12,18 @@ import {
 
 import { Pressable, Text } from "react-native";
 import React from "react";
-
 import { Highlight } from "@components/Highlight";
 import { Input } from "@components/Input";
 import { ButtonAdd } from "@components/Button";
-
 import { useNavigation } from "@react-navigation/native";
-
 import { registerUser } from "@libs/firebase/auth";
-
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import LogoImg from "@assets/white_vanmoosh.png";
 import background from "@assets/background.png";
-
 import { User, defaultUser } from "@utils/users";
-
 import { useState } from "react";
-
-import { SchoolNavigatorRoutesProps } from "@routes/Routes_School/app.routes";
 import { AuthNavigatorRoutesProps } from "@routes/Auth/app.routes";
 
 type FormDataProps = {
@@ -80,7 +71,7 @@ export function SignUp() {
     navigation.navigate('SelectUser');
 
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
     
   }

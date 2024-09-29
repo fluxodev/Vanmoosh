@@ -1,7 +1,5 @@
 import { initializeApp } from "firebase/app";
 
-import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
-
 const firebaseConfig = {
   apiKey: "AIzaSyCRhWwKoymhh9ElvmsqFOgc5H77V2chjA0",
   authDomain: "vanmoosh-app.firebaseapp.com",

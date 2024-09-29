@@ -8,9 +8,7 @@ import { ButtonAdd } from "@components/Button";
 import { ListEmpty } from "@components/ListEmpty";
 
 import { useState, useEffect } from "react";
-import { Text } from 'react-native';
 import React from 'react';
-import { addDriver } from "@libs/firebase/db/drivers/addDriver";
 import { useNavigation } from "@react-navigation/native";
 import { SchoolNavigatorRoutesProps } from "@routes/Routes_School/app.routes";
 import { collection, getDocs, getFirestore } from "firebase/firestore";

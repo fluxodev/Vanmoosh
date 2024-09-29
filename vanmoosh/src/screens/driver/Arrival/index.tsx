@@ -1,17 +1,14 @@
 import { Container, MarginBetweenButtons } from "./style"
 import HeaderDeparture from "@components/HeaderDeparture"
-import PlacaInput from "@components/PlacaInput"
 import { ButtonAdd } from "@components/Button"
 import { useCallback, useEffect, useState } from "react"
 import { DriverNavigatorRoutesProps } from "@routes/Routes_Driver/app.routes"
 import { useFocusEffect, useNavigation } from "@react-navigation/native"
 import { Alert } from "react-native"
-import { createHistoricLog } from "@libs/firebase/db/Driver/historic"
 import { ButtonIcon } from "@components/ButtonIcon"
 import { Highlight } from "@components/Highlight"
 import { useRoute } from "@react-navigation/native"
 import { updateHistoricLog } from "@libs/firebase/db/Driver/historic"
-import { checkOpenTrip } from "@libs/firebase/db/Driver/checkTrip"
 import { stopLocTask } from "src/tasks/backgroundLocationTask"
 import { getStorageLocations } from "@storage/Location/StorageLocation"
 import { LatLng } from "react-native-maps"
@@ -32,8 +29,6 @@ export function Arrival() {
   const [arrival, setArrival] = useState(false)
   const route = useRoute()
   const { id } = route.params as RouteParamsProps;
-
-  console.log(`ID > ${id}`);
   
   const [isRegistered, setIsRegistered] = useState(false)
 
@@ -70,17 +65,12 @@ export function Arrival() {
       } else {
         setCoords(data?.coords ?? [])
         const lat = JSON.stringify(data.coords[data.coords.length - 1].latitude).toString()
-        const long = JSON.stringify(data.coords[data.coords.length - 1].longitude).toString()
-
-        console.log(`LATITUDE1: ${lat}\nLONGITUDE: ${long}`);
-        
+        const long = JSON.stringify(data.coords[data.coords.length - 1].longitude).toString()   
         
 
         getReverseGeolocation(lat, long).then((address) => {
           if (address && address.address && address.address.road) {
             setArrivalAddressCurrent(address.address.road)
-          } else {
-            console.log('Rua não encontrada');
           }
         })
       }
@@ -94,8 +84,6 @@ export function Arrival() {
         getReverseGeolocation(lat, long).then((address) => {
           if (address && address.address && address.address.road) {
             setDepartureAddressCurrent(address.address.road)
-          } else {
-            console.log('Rua não encontrada');
           }
         })
 
@@ -113,20 +101,17 @@ export function Arrival() {
 
       const result = await updateHistoricLog(id)
 
-      console.log(`Histórico de ID ${id} alterado para o status: ${result.status}`);
-      
       navigation.goBack()
       
       const coordenates = await getStorageLocations()
-      console.log('Coordenadas', coordenates);
-      
+
       
       await updateTripCoord({coordenates, id})
 
       await stopLocTask()
       
     } catch (error) {
-      console.log("Erro: > ", error);
+      console.error("Erro: > ", error);
       Alert.alert("Erro", 'Não foi possivel registrar o fim da viagem.')
       setIsRegistered(false)
     }

@@ -22,7 +22,6 @@ function HandleOnTurmas(){
 }
 
 function HandleOnRotas() {
-  console.log('Botão Rotas')
   Alert.alert('Rotas', 'Em breve você poderá gerenciar as rotas dos motoristas.')
 }
   

@@ -7,13 +7,6 @@ import theme from '@theme/index';
 
 //-------------------------------------//----------------------------------//
 
-import { Home_Driver } from '@screens/driver/Home';
-import { Chat_Driver } from '@screens/driver/Chat';
-import { Account_Driver } from '@screens/driver/Account';
-import { Departure } from '@screens/driver/Departure';
-import { StartRoute } from '@screens/driver/StartRoute';
-import { Arrival } from '@screens/driver/Arrival';
-
 import { Home_Responsible } from '@screens/responsible/Home';
 import { Chat_Responsible } from '@screens/responsible/Chat';
 import { Account_Responsible } from '@screens/responsible/Account';
