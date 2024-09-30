@@ -20,7 +20,6 @@ export function ButtonIconTitleAndLine({ icon, type = 'primary', title, ...rest 
         {title}
       </TitleButton>
 
-      <Line/>
     </Container>
   );
 }

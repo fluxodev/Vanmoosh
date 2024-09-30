@@ -1,13 +1,20 @@
 
-import { Header, HeaderBox } from './styles'
+import { Header, HeaderBox, NameSchool } from './styles'
 
-import HeaderImg from '@assets/VanmooshHeader.png'
+import header from '@assets/header.png'
 
-export function HeaderLogo() {
+type Props ={
+  name: string,
+  type: string,
+}
+
+export function HeaderLogo({name, type}: Props) {
   return (
 
       <HeaderBox>
-        <Header source={HeaderImg} defaultSource={HeaderImg}/>
+        <Header source={header} defaultSource={header}>
+          <NameSchool>{name}</NameSchool>
+        </Header>
       </HeaderBox>
 
   )
