@@ -11,6 +11,11 @@ import { ResponsibleNavigatorRoutesProps } from '@routes/Routes_Responsible/app.
 import { getAuth, signOut } from 'firebase/auth'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import app from '@libs/firebase/config'
+import { ButtonAdd } from '@components/Button'
+import { ButtonIcon } from '@components/ButtonIcon'
+import { ButtonMain } from '@components/ButtonMain'
+import { ButtonTitleAndIcon } from '@components/ButtonTitleAndIcon'
+import { ButtonIconTitleAndLine } from '@components/ButtonIconTitleAndLine'
 
 export function Account_Responsible() {
 
@@ -40,11 +45,28 @@ export function Account_Responsible() {
     <Container>
         <HeaderSettings />
 
-      <OptionsCard title='Configuração' />
-      <OptionsCard title='Editar Informações'/>
-      <OptionsCard title='Adicionar filho(a)' onPress={handleOnAddChild} />
-      <OptionsCard title='Sair' onPress={handleOnClickSignout} />
-      
+        <ButtonIconTitleAndLine
+          icon='settings'
+          title='Configuração'
+        />
+
+        <ButtonIconTitleAndLine
+          icon='edit'
+          title='Editar Perfil'
+        />
+
+        <ButtonIconTitleAndLine 
+          icon='person' 
+          title='Adicionar um filho(a)' 
+          onPress={handleOnAddChild}
+        />
+
+        <ButtonIconTitleAndLine
+          title='Sair'
+          icon='exit-to-app'
+          onPress={handleOnClickSignout}
+        />
+
     </Container>
   )
 }

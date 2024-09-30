@@ -13,14 +13,14 @@ export const Container = styled(TouchableOpacity)`
   height: 70px;
   margin-left: 10px;
   border-radius: 20px;
-  background-color: ${({theme}) => theme.COLORS.GRAY_200};
+  background-color: ${({theme}) => theme.COLORS.WHITE_GRAY};
   margin-top: 3%;
   justify-content: center;
 `;
 
 export const Icon = styled(MaterialIcons).attrs<Props>(({ theme, type }) => ({
   size: 35,
-  color: type === 'primary' ? theme.COLORS.BRAND_MID : theme.COLORS.GRAY_300
+  color: type === 'primary' ? theme.COLORS.BRAND_MID : theme.COLORS.BRAND_MID
 
 }))`
   margin-left: 20px;
@@ -33,7 +33,7 @@ margin-left: 50px;
     ${({ theme}) => css`
     
     font-size: ${Platform.OS === 'android' ? theme.FONT_SIZE.P  : theme.FONT_SIZE.MD}px;
-    color: ${theme.COLORS.BLACK};
+    color: ${theme.COLORS.BRAND_MID};
     font-family: ${theme.FONT_FAMILY.BOLD};
     padding: 0 24px;
     
