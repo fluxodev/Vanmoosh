@@ -22,5 +22,6 @@ ${({ theme }) => css`
     border-width: 1px;
     
     padding: 16px;
+    margin-top: 5%;
 `}
 `;

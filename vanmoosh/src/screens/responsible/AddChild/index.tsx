@@ -1,10 +1,10 @@
 import { Input } from "@components/Input";
-import { Container, Box } from "./style";
+import { Container, Box, Body, Title, Scroll, Line } from "./style";
 
 import HeaderDeparture from "@components/HeaderDeparture";
 import { Highlight } from "@components/Highlight";
 import { ButtonAdd } from "@components/Button";
-import { Alert } from "react-native";
+import { Alert, FlatList, ScrollView } from "react-native";
 import { addStudentToGroup } from "@libs/firebase/db/students/includeStudentInTheGroup";
 
 import { addChild } from "@libs/firebase/db/Responsibles/addChild";
@@ -36,59 +36,79 @@ export function AddChild(){
         } catch (error) {
             console.error("Erro ao registrar: ", error)
         }
-
-        
     }
 
     return (
         <Container>
             <HeaderDeparture
                 title="Adicionar filho(a)"
-                
             />
+
+            <Body>
                 <Highlight
-                    title="Filiação"
                     subTitle="Preencha o seguinte formulário com os dados de seu agregado "
                 />
 
-                <Input 
-                    placeholder="Nome Completo"
-                    returnKeyType="done" //Muda o "Retorno" para "Concluido".
-                    autoCorrect= {false}
-                    value={name}
-                    onChangeText={setName}
-                />
+                <Scroll>
+                <Title>Dados Pessoais</Title>
+                <Line/>
+                    <Input 
+                        placeholder="Nome Completo"
+                        returnKeyType="done" //Muda o "Retorno" para "Concluido".
+                        autoCorrect= {false}
+                        value={name}
+                        onChangeText={setName}
+                    />
 
-                <Input 
-                    placeholder="CPF"
-                    returnKeyType="done"
-                    value={cpf}
-                    onChangeText={setCpf}
-                />
-                
-                <Input 
-                    placeholder="Data de Nascimento"
-                    returnKeyType="done"
-                    value={birthdayDate}
-                    onChangeText={setBirthdayDate}
-                />
+                    <Input 
+                        placeholder="CPF"
+                        returnKeyType="done"
+                        value={cpf}
+                        onChangeText={setCpf}
+                    />
+                    
+                    <Input 
+                        placeholder="Data de Nascimento"
+                        returnKeyType="done"
+                        value={birthdayDate}
+                        onChangeText={setBirthdayDate}
+                    />
+                    
+                    <Title>Informações Básicas</Title>
+                    <Line/>
+                    <Input  
+                        placeholder="E-mail do responsável"
+                        returnKeyType="done"
+                        autoCorrect= {false}
+                        value={anoEscolar}
+                        onChangeText={setAnoEscolar}
+                    />
+                    <Input  
+                        placeholder="Número do responsável"
+                        returnKeyType="done"
+                        autoCorrect= {false}
+                        value={anoEscolar}
+                        onChangeText={setAnoEscolar}
+                    />
+                    <Input  
+                        placeholder="Número de emergencia"
+                        returnKeyType="done"
+                        autoCorrect= {false}
+                        value={anoEscolar}
+                        onChangeText={setAnoEscolar}
+                    />
 
-                <Input  
-                    placeholder="Ano Escolar"
-                    returnKeyType="done"
-                    autoCorrect= {false}
-                    value={anoEscolar}
-                    onChangeText={setAnoEscolar}
-                />
+                    <Title>Informação Escolar</Title>
+                    <Line/>
+                    <Input  
+                        placeholder="Código da Sala"
+                        returnKeyType="done"
+                        autoCorrect= {false}
+                        value={groupCode}
+                        onChangeText={setGroupCode}
 
-                <Input  
-                    placeholder="Código da Sala"
-                    returnKeyType="done"
-                    autoCorrect= {false}
-                    value={groupCode}
-                    onChangeText={setGroupCode}
-
-                />
+                    />
+                </Scroll>
                 <Box />
 
             <ButtonAdd 
@@ -103,7 +123,7 @@ export function AddChild(){
 
             )}
             />
-           
+           </Body>
         </Container>
 
     );

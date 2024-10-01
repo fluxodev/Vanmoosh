@@ -13,7 +13,7 @@ export const Container = styled(TouchableOpacity)`
   height: 70px;
   margin-left: 10px;
   border-radius: 20px;
-  background-color: ${({theme}) => theme.COLORS.WHITE_GRAY};
+  background-color: ${({theme}) => theme.COLORS.GRAY_100};
   margin-top: 3%;
   justify-content: center;
 `;
