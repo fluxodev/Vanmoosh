@@ -1,34 +1,38 @@
-import { FlatList } from "react-native";
-import { useState } from "react";
+import { Container } from './styles'
+import { Highlight } from '@components/Highlight'
+import { ButtonTitleAndIcon } from '@components/ButtonTitleAndIcon'
+import { MarginBetweenButtons, ViewButton } from '@screens/school/Home/styles'
+import { HeaderLogo } from '@components/HeaderLogo'
+import { useNavigation } from '@react-navigation/native'
+import { Alert } from 'react-native'
+import { DriverNavigatorRoutesProps } from '@routes/Routes_Driver/app.routes'
+import { ResponsibleNavigatorRoutesProps } from '@routes/Routes_Responsible/app.routes'
 
-import { Container, Body } from "./styles";
+export function Home_Responsible() {
 
-import { HeaderLogo } from "@components/HeaderLogo";
-import { ButtonIconTitleAndLine } from "@components/ButtonIconTitleAndLine";
-
-
-export function Home_Responsible (){
-    const [groups, setGroups] = useState<string[]>(['Olá', 'ooooooooooooooooo']);
-
-    return(
-        <Container>
-            <HeaderLogo />
-        <Body>
-        <FlatList
-          data={groups}
-          keyExtractor={(item) => item}
-          renderItem={({ item }) => (
-            <ButtonIconTitleAndLine
-                title={item}
-                icon="people"
-                type="secondary"
-            />
-          )}
-          />
-            
+    const navigation = useNavigation<ResponsibleNavigatorRoutesProps>()
 
 
-            </Body>
-        </Container>
-    );
+      function HandleOnDeparture(){
+        navigation.navigate('addChild')
+      }
+      
+
+  return (
+    <Container>
+
+      <HeaderLogo />
+      <Highlight title='Início' subTitle='Gerencie seus filhos.'  />
+        
+      <ViewButton>
+        <MarginBetweenButtons />
+        <ButtonTitleAndIcon icon='groups' title='Adicionar Filho' onPress={HandleOnDeparture} />
+      </ViewButton>
+
+      <ViewButton>
+      </ViewButton>
+
+    </Container>
+  )
 }
+

@@ -8,8 +8,6 @@ import {
 } from "@expo-google-fonts/roboto";
 import { Loading } from "@components/Loading";
 import { StatusBar } from "react-native";
-import NewGroup from "@screens/school/NewGroup";
-import Students from "@screens/school/Students";
 import Routes from "@routes/index";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 

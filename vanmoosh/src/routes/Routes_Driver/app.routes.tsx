@@ -8,7 +8,6 @@ import theme from '@theme/index';
 //-------------------------------------//----------------------------------//
 
 import { Home_Driver } from '@screens/driver/Home';
-import { Chat_Driver } from '@screens/driver/Chat';
 import { Account_Driver } from '@screens/driver/Account';
 import { Departure } from '@screens/driver/Departure';
 import { StartRoute } from '@screens/driver/StartRoute';
@@ -21,7 +20,6 @@ const { Navigator, Screen } = createBottomTabNavigator<DriverRoutesProps>();
 
 type DriverRoutesProps = {
     Home_School: undefined;
-    Chat_School: undefined;
     Account_School: undefined;
     EditAccount_School: undefined;
     Groups: undefined;
@@ -81,32 +79,6 @@ export function DriverRoutes() {
                         fontFamily: theme.FONT_FAMILY.REGULAR, 
                         fontSize: theme.FONT_SIZE.XS, 
                         color: COLORS.BRAND_MID },
-                }}
-            />
-            <Screen
-                name="Chat_Driver"
-                component={Chat_Driver}
-                options={{
-                    tabBarLabel: 'Chat',
-                    tabBarIcon: ({focused}) => {
-                        if(focused){
-                            return <ChatDots 
-                            weight='fill'
-                            size={24}
-                            color={COLORS.BRAND_MID}
-                            />
-                        }
-                        return <ChatDots 
-                            weight='light'
-                            size={24}
-                            color={COLORS.BRAND_MID}
-                        />
-                    },
-                    tabBarLabelStyle: { 
-                        fontFamily: theme.FONT_FAMILY.REGULAR, 
-                        fontSize: theme.FONT_SIZE.XS, 
-                        color: COLORS.BRAND_MID 
-                    },
                 }}
             />
             <Screen

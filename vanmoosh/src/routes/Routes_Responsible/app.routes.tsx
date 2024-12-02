@@ -8,14 +8,12 @@ import theme from '@theme/index';
 //-------------------------------------//----------------------------------//
 
 import { Home_Driver } from '@screens/driver/Home';
-import { Chat_Driver } from '@screens/driver/Chat';
 import { Account_Driver } from '@screens/driver/Account';
 import { Departure } from '@screens/driver/Departure';
 import { StartRoute } from '@screens/driver/StartRoute';
 import { Arrival } from '@screens/driver/Arrival';
 
 import { Home_Responsible } from '@screens/responsible/Home';
-import { Chat_Responsible } from '@screens/responsible/Chat';
 import { Account_Responsible } from '@screens/responsible/Account';
 import { AddChild } from '@screens/responsible/AddChild';
 
@@ -26,7 +24,6 @@ const { Navigator, Screen } = createBottomTabNavigator<ResponsibleRoutesProps>()
 
 type ResponsibleRoutesProps = {
     homeResponsible: undefined,
-    chatResponsible: undefined,
     accountResponsible: undefined,
     addChild: undefined
 }
@@ -71,32 +68,6 @@ export function ResponsibleRoutes() {
                         fontFamily: theme.FONT_FAMILY.REGULAR, 
                         fontSize: theme.FONT_SIZE.XS, 
                         color: COLORS.BRAND_MID },
-                }}
-            />
-            <Screen
-                name='chatResponsible'
-                component={Chat_Responsible}
-                options={{
-                    tabBarLabel: 'Chat',
-                    tabBarIcon: ({focused}) => {
-                        if(focused){
-                            return <ChatDots 
-                            weight='fill'
-                            size={24}
-                            color={COLORS.BRAND_MID}
-                            />
-                        }
-                        return <ChatDots 
-                            weight='light'
-                            size={24}
-                            color={COLORS.BRAND_MID}
-                        />
-                    },
-                    tabBarLabelStyle: { 
-                        fontFamily: theme.FONT_FAMILY.REGULAR, 
-                        fontSize: theme.FONT_SIZE.XS, 
-                        color: COLORS.BRAND_MID 
-                    },
                 }}
             />
             <Screen

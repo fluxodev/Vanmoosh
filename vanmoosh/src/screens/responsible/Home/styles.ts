@@ -1,14 +1,9 @@
 import styled from "styled-components/native";
 
-export const Container  = styled.SafeAreaView`
-    width: 100%;
+export const Container = styled.SafeAreaView`
     flex: 1;
     background-color: ${({ theme }) => theme.COLORS.WHITE};
-    
+    align-items: center;
+    justify-content: center;
 
-`;
-
-export const Body = styled.View`
-    margin-top: 100px;
-    margin-left: 20px;
 `;
