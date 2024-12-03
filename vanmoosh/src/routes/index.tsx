@@ -1,5 +1,5 @@
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import theme from '@theme/index';
 
 import { SchoolRoutes } from './Routes_School/app.routes';
@@ -19,7 +19,6 @@ import { getUser } from '@storage/auth/storageUser';
 import { SchoolData } from '@screens/auth/SchoolData';
 import { Account_Driver } from '@screens/driver/Account';
 
-
 const { Navigator, Screen } = createNativeStackNavigator();
 
 export default function Routes() {
@@ -28,7 +27,6 @@ export default function Routes() {
 
     console.log(user);
     
-
     const { COLORS } = theme;
 
     const themeNavigator = DefaultTheme;
@@ -36,21 +34,40 @@ export default function Routes() {
     
     useEffect(() => {
         async function checkUser() {
-          const user = await getUser();
-          if (user) {
-            // Usuário está logado, você pode redirecionar para a tela principal
-            console.log('Usuário logado:', user);
-          } else {
-            // Usuário não está logado, redirecionar para a tela de login
-            console.log('Nenhum usuário logado');
-          }
+            const user = await getUser();
+            if (user) {
+                // Usuário está logado, você pode redirecionar para a tela principal
+                console.log('Usuário logado:', user);
+            } else {
+                // Usuário não está logado, redirecionar para a tela de login
+                console.log('Nenhum usuário logado');
+            }
         }
       
         checkUser();
-      }, []);
+    }, []);
+
+    let RoutesComponent = <AuthRoutes />; // Fallback para quando o usuário não tem uma role definida
+
+    if (user && user.role) {
+        switch(user.role) {
+            case 'driver':
+                RoutesComponent = <DriverRoutes />;
+                break;
+            case 'school':
+                RoutesComponent = <SchoolRoutes />;
+                break;
+            case 'common':
+                RoutesComponent = <ResponsibleRoutes />;
+                break;
+            default:
+                RoutesComponent = <AuthRoutes />; // Se a role for desconhecida, redireciona para a tela de autenticação
+        }
+    }
+
     return (
         <NavigationContainer theme={themeNavigator}>   
-            {user.email ? <DriverRoutes /> :  <AuthRoutes />}
+            {RoutesComponent}
         </NavigationContainer>
-    )
+    );
 }
