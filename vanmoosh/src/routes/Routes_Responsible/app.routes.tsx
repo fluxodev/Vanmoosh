@@ -16,6 +16,7 @@ import { Arrival } from '@screens/driver/Arrival';
 import { Home_Responsible } from '@screens/responsible/Home';
 import { Account_Responsible } from '@screens/responsible/Account';
 import { AddChild } from '@screens/responsible/AddChild';
+import EditAccountResponsible from '@screens/responsible/EditAccount';
 
 //-------------------------------------//----------------------------------//
 
@@ -25,7 +26,8 @@ const { Navigator, Screen } = createBottomTabNavigator<ResponsibleRoutesProps>()
 type ResponsibleRoutesProps = {
     homeResponsible: undefined,
     accountResponsible: undefined,
-    addChild: undefined
+    addChild: undefined,
+    EditAccountResponsible: undefined,
 }
 
 export type ResponsibleNavigatorRoutesProps = BottomTabNavigationProp<ResponsibleRoutesProps>;
@@ -105,6 +107,15 @@ export function ResponsibleRoutes() {
                 tabBarStyle: {display: 'none'},
             }}
             />
+            <Screen 
+            name='EditAccountResponsible'
+            component={EditAccountResponsible}
+            options={{
+                tabBarButton: () => null,
+                tabBarStyle: {display: 'none'},
+            }}
+            />
+            
         </Navigator>
     )
 }

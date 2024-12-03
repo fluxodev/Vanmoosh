@@ -8,7 +8,6 @@ import theme from '@theme/index';
 
 //-------------------------------------//----------------------------------//
 import Home_School from '@screens/school/Home';
-import Chat_School from '@screens/school/Chat';
 import Account_School from '@screens/school/Account';
 import EditAccount from '@screens/school/EditAccount';
 import Groups from '@screens/school/Groups';
@@ -24,7 +23,6 @@ const { Navigator, Screen } = createBottomTabNavigator<SchoolRoutesProps>();
 
 type SchoolRoutesProps = {
     Home_School: undefined;
-    Chat_School: undefined;
     Account_School: undefined;
     EditAccount_School: undefined;
     Groups: undefined;
@@ -76,32 +74,6 @@ export function SchoolRoutes() {
                         fontFamily: theme.FONT_FAMILY.REGULAR, 
                         fontSize: theme.FONT_SIZE.XS, 
                         color: COLORS.BRAND_MID },
-                }}
-            />
-            <Screen
-                name="Chat_School"
-                component={Chat_School}
-                options={{
-                    tabBarLabel: 'Chat',
-                    tabBarIcon: ({focused}) => {
-                        if(focused){
-                            return <ChatDots 
-                            weight='fill'
-                            size={24}
-                            color={COLORS.BRAND_MID}
-                            />
-                        }
-                        return <ChatDots 
-                            weight='light'
-                            size={24}
-                            color={COLORS.BRAND_MID}
-                        />
-                    },
-                    tabBarLabelStyle: { 
-                        fontFamily: theme.FONT_FAMILY.REGULAR, 
-                        fontSize: theme.FONT_SIZE.XS, 
-                        color: COLORS.BRAND_MID 
-                    },
                 }}
             />
             <Screen

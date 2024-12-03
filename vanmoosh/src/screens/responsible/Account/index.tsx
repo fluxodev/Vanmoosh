@@ -16,11 +16,10 @@ export function Account_Responsible() {
 
   const navigation = useNavigation<ResponsibleNavigatorRoutesProps>()
 
-  function handleOnAddChild() {
-
-    navigation.navigate('addChild')
-
+  function navigateToAccount() {
+    navigation.navigate('EditAccountResponsible')
   }
+
 
   async function handleOnClickSignout() {
 
@@ -40,9 +39,7 @@ export function Account_Responsible() {
     <Container>
         <HeaderSettings />
 
-      <OptionsCard title='Configuração' />
-      <OptionsCard title='Editar Informações'/>
-      <OptionsCard title='Adicionar filho(a)' onPress={handleOnAddChild} />
+      <OptionsCard title='Verificar Conta' onPress={navigateToAccount} />
       <OptionsCard title='Sair' onPress={handleOnClickSignout} />
       
     </Container>

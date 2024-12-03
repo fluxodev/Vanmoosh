@@ -19,6 +19,17 @@ export function Account_Driver() {
 
   const navigation = useNavigation<DriverNavigatorRoutesProps>()
 
+  function handleOnButton() {
+    try {
+
+      navigation.navigate('EditAccountDriver')
+
+    } catch (error) {
+      console.error(error);
+    }
+
+  }
+
   async function handleOnClickSignout() {
 
    
@@ -35,9 +46,9 @@ export function Account_Driver() {
   return (
 
     <Container>
-        <HeaderSettings title='Nome e Sobrenome'/>
+        <HeaderSettings/>
         <MarginCardButton>
-          <ButtonTitleAndIcon title='Editar perfil' icon='edit'/>
+          <ButtonTitleAndIcon title='Verificar perfil' icon='edit' onPress={handleOnButton}/>
         </MarginCardButton>
         <MarginButton>
           <ButtonAdd title='Sair' onPress={handleOnClickSignout} />

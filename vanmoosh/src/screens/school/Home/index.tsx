@@ -21,12 +21,6 @@ function HandleOnTurmas(){
   navigation.navigate('Groups')
 }
 
-function HandleOnRotas() {
-  console.log('Botão Rotas')
-  Alert.alert('Rotas', 'Em breve você poderá gerenciar as rotas dos motoristas.')
-}
-  
-
   return (
     <Container>
       <HeaderLogo />
@@ -35,9 +29,6 @@ function HandleOnRotas() {
       <ButtonTitleAndIcon icon='directions-car-filled' title='Motoristas' onPress={HandleOnMotoristas}/>
       <MarginBetweenButtons />
       <ButtonTitleAndIcon icon='groups' title='Turmas' onPress={HandleOnTurmas} />
-      </ViewButton>
-      <ViewButton>
-      <ButtonTitleAndIcon icon='route' title='Rotas' onPress={HandleOnRotas}/>
       </ViewButton>
     </Container>
   )

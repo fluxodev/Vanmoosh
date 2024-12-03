@@ -12,6 +12,7 @@ import { Account_Driver } from '@screens/driver/Account';
 import { Departure } from '@screens/driver/Departure';
 import { StartRoute } from '@screens/driver/StartRoute';
 import { Arrival } from '@screens/driver/Arrival';
+import EditAccountDriver from '@screens/driver/EditAccount';
 
 //-------------------------------------//----------------------------------//
 
@@ -26,6 +27,8 @@ type DriverRoutesProps = {
     Students: undefined;
     NewGroup: undefined;
 
+
+    EditAccountDriver: undefined;
     Home_Driver: undefined;
     Chat_Driver: undefined;
     Account_Driver: undefined;
@@ -127,6 +130,14 @@ export function DriverRoutes() {
             <Screen 
             name='StartRoute'
             component={StartRoute}
+            options={{
+                tabBarButton: () => null,
+                tabBarStyle: {display: 'none'},
+            }}
+            />
+            <Screen 
+            name='EditAccountDriver'
+            component={EditAccountDriver}
             options={{
                 tabBarButton: () => null,
                 tabBarStyle: {display: 'none'},
